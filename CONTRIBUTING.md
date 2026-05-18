@@ -2,13 +2,10 @@
 
 ## Branch Strategy
 
-We use a three-tier branch model:
-
 | Branch | Purpose | Merges into |
 |---|---|---|
 | `main` | Production | Never directly |
-| `staging` | Pre-production QA | `main` via PR |
-| `dev` | Active development | `staging` via PR |
+| `dev` | Active development | `main` via PR |
 | `feature/xxx` | New features | `dev` via PR |
 | `fix/xxx` | Bug fixes | `dev` via PR |
 | `chore/xxx` | Non-functional changes | `dev` via PR |
@@ -40,7 +37,7 @@ No em dashes anywhere in code, comments, or commit messages.
 
 1. Run the PR reviewer agent inside Claude Code before opening any PR
 2. Make sure CI passes locally first: `npm run build && npx tsc --noEmit`
-3. All PRs target `dev` — never `staging` or `main` directly
+3. All PRs target `dev` — never `main` directly
 4. Fill out the PR template fully — no empty sections
 5. PRs with failing CI will not be merged
 
@@ -56,9 +53,8 @@ No em dashes anywhere in code, comments, or commit messages.
 ## Merging Flow
 
 ```
-feature/xxx  →  dev        (daily, per feature)
-dev          →  staging    (weekly or per milestone)
-staging      →  main       (after QA sign-off)
+feature/xxx  →  dev        (per feature, via PR)
+dev          →  main       (per release, via PR)
 ```
 
 ## Using Claude Subagents
@@ -74,8 +70,6 @@ Before merging to main:
 
 ## Release Process
 
-1. Open PR from `dev` to `staging`
-2. Deploy staging, do manual QA
-3. Run `/changelog` to generate release notes
-4. Open PR from `staging` to `main`
-5. Merge — auto-deploys to production
+1. Run `/changelog` to generate release notes
+2. Open PR from `dev` to `main`
+3. Merge — auto-deploys to production
