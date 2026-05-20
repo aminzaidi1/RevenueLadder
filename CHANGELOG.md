@@ -6,6 +6,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased] - 2026-05-20
 
 ### Added
+- Contact page and form with email delivery via Resend API
+- Self-hosted Montserrat and Inter fonts via `next/font` (eliminates Google Fonts network requests)
 - Full mobile-first responsive layout across all homepage sections using CSS utility classes (`rl-px`, `rl-section-pad`, `rl-hero-grid`, `rl-grid-2/3/4/6`, `rl-footer-grid`, `rl-footer-bottom`)
 - Services accordion in mobile hamburger menu with scrollable content panel
 - Mobile menu scrollable container (`max-height: calc(100svh - 100px)`)
@@ -22,3 +24,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Footer: 2-column grid on mobile with brand column spanning full width; 5-column on desktop
 - Lint script scoped to `src/` to exclude design reference files
 - Removed staging branch; simplified deploy flow to dev -> main
+
+### Fixed
+- Contact API route: request body validated with type guard before use; rate-limiting and CSRF protections added
+- Sign-out route hardened against unhandled rejections
