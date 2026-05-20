@@ -26,12 +26,11 @@ const STATS = [
 
 export function HeroSection() {
   return (
-    <section style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+    <section style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
       {/* Dark hero slab */}
-      <div style={{
+      <div className="rl-hero-slab" style={{
         position: "relative", margin: "24px 0 0", overflow: "hidden",
         borderRadius: 32, background: "var(--rl-grad-hero)", color: "#fff",
-        padding: "96px 60px 104px",
       }}>
         {/* Backgrounds */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "var(--rl-pattern-dots-dark)", backgroundSize: "24px 24px" }} />
@@ -48,8 +47,7 @@ export function HeroSection() {
         }} />
 
         {/* 60/40 grid */}
-        <div style={{ position: "relative", zIndex: 2, display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 56, alignItems: "center" }}
-          className="flex-col lg:grid">
+        <div style={{ position: "relative", zIndex: 2 }} className="rl-hero-grid">
           {/* Left */}
           <div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
@@ -180,8 +178,8 @@ export function HeroSection() {
       </div>
 
       {/* Ticker band */}
-      <div style={{
-        marginTop: 40, display: "flex", alignItems: "center", gap: 24,
+      <div className="hidden sm:flex" style={{
+        marginTop: 40, alignItems: "center", gap: 24,
         padding: "20px 28px", background: "var(--rl-surface)",
         border: "2px solid var(--rl-border-soft)", borderRadius: 18, overflow: "hidden",
       }}>
@@ -198,11 +196,10 @@ export function HeroSection() {
       </div>
 
       {/* Stat strip */}
-      <div style={{
-        display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24,
+      <div className="rl-grid-4" style={{
         padding: "32px 0", marginTop: 24,
         borderTop: "1px solid var(--rl-border-soft)", borderBottom: "1px solid var(--rl-border-soft)",
-      }} className="grid-cols-2 sm:grid-cols-4">
+      }}>
         {STATS.map(({ v, suffix, label }) => (
           <div key={label} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <div style={{ fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 900, fontSize: 40, letterSpacing: "-.025em", color: "var(--rl-forest)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 4 }}>

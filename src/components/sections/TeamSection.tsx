@@ -27,8 +27,8 @@ const AVATAR_COLORS = [
 
 export function TeamSection() {
   return (
-    <section style={{ padding: "112px 0", background: "var(--rl-bg)" }} id="team">
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+    <section className="rl-section-pad" style={{ background: "var(--rl-bg)" }} id="team">
+      <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
           <span style={{
@@ -54,7 +54,7 @@ export function TeamSection() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 16, marginBottom: 28 }} className="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="rl-grid-6" style={{ marginBottom: 28 }}>
           {HUMANS.map(({ initials, nm, rl }, idx) => (
             <div key={nm} style={{
               background: "var(--rl-surface)", border: "2px solid var(--rl-border-soft)",
@@ -87,7 +87,7 @@ export function TeamSection() {
           ))}
         </div>
 
-        <div style={{ maxWidth: 720, margin: "0 auto 36px", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }} className="grid-cols-2 sm:grid-cols-4">
+        <div className="rl-grid-4" style={{ maxWidth: 720, margin: "0 auto 36px" }}>
           {AGENTS.map(({ initials, nm, rl }) => (
             <div key={nm} style={{
               background: "var(--rl-surface)", border: "2px solid var(--rl-gold-tint-2)",

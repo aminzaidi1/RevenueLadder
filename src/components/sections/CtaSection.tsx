@@ -3,10 +3,10 @@ import { ArrowRight, CheckCircle } from "lucide-react"
 
 export function CtaSection() {
   return (
-    <section style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px 64px" }}>
+    <section style={{ maxWidth: 1240, margin: "0 auto", paddingBottom: 64 }} className="rl-px">
       <div style={{
         background: "var(--rl-grad-hero)", color: "#fff",
-        borderRadius: 32, padding: "80px 60px",
+        borderRadius: 32, padding: "48px 24px",
         position: "relative", overflow: "hidden", textAlign: "center",
       }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "var(--rl-pattern-dots-dark)", backgroundSize: "26px 26px", pointerEvents: "none" }} />

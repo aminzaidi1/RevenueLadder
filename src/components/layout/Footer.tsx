@@ -25,10 +25,9 @@ const SOCIALS = ["LinkedIn", "YouTube", "X", "Email"]
 
 export function Footer() {
   return (
-    <footer style={{ background: "var(--rl-forest-ink)", color: "rgba(255,255,255,.55)", padding: "64px 0 32px", marginTop: 64, position: "relative" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr repeat(4, 1fr)", gap: 40, paddingBottom: 48, borderBottom: "1px solid rgba(255,255,255,.08)" }}
-          className="grid-cols-2 lg:grid-cols-5">
+    <footer style={{ background: "var(--rl-forest-ink)", color: "rgba(255,255,255,.55)", padding: "64px 0 32px", marginTop: 64, position: "relative", overflow: "hidden" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
+        <div className="rl-footer-grid" style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
 
           {/* Brand col */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -72,7 +71,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, fontSize: 12, color: "rgba(255,255,255,.3)" }}>
+        <div className="rl-footer-bottom" style={{ paddingTop: 24, fontSize: 12, color: "rgba(255,255,255,.3)" }}>
           <div>© 2026 RevenueLadder Ltd. Registered in Wales · 14528221.</div>
           <div style={{ display: "flex", gap: 8 }}>
             {SOCIALS.map((label) => (
