@@ -1,24 +1,25 @@
-import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
-import type { Metadata } from 'next'
+import { redirect } from "next/navigation"
+import { createClient } from "@/lib/supabase/server"
+import type { Metadata } from "next"
+import { AlertCircle, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'Login | Revenue Ladder',
+  title: "Sign in | Revenue Ladder",
 }
 
 async function signIn(formData: FormData) {
-  'use server'
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
+  "use server"
+  const email = formData.get("email") as string
+  const password = formData.get("password") as string
 
   const supabase = await createClient()
   const { error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) {
-    redirect('/login?error=Invalid+email+or+password')
+    redirect("/login?error=Invalid+email+or+password")
   }
 
-  redirect('/dashboard')
+  redirect("/dashboard")
 }
 
 export default async function LoginPage({
@@ -30,62 +31,78 @@ export default async function LoginPage({
 
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-
-  if (user) {
-    redirect('/dashboard')
-  }
+  if (user) redirect("/dashboard")
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-          Revenue Ladder
-        </h1>
+    <div className="login-root">
+      <div className="login-panel">
+        <div className="lp-mark">RL</div>
 
-        <form action={signIn} className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 space-y-5">
-          {error && (
-            <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
-              {error}
-            </p>
-          )}
+        <div>
+          <div className="lp-tagline">
+            The tools that keep<br /><em>Revenue Ladder</em><br />running.
+          </div>
+          <p className="lp-sub">
+            Internal dashboard for blog publishing and contact management.
+            Bangor, Wales.
+          </p>
+          <div className="lp-badges">
+            {["Blog management", "Contact submissions", "Supabase auth", "Bangor"].map((b) => (
+              <span key={b} className="lp-badge">
+                <span className="dot" />{b}
+              </span>
+            ))}
+          </div>
+        </div>
 
-          <div className="space-y-1.5">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="you@example.com"
-            />
+        <div className="lp-foot">revenueladder.co.uk &middot; internal tools only</div>
+      </div>
+
+      <div className="login-form-side">
+        <div className="login-card">
+          <div className="login-card-head">
+            <div className="eyebrow">Revenue Ladder</div>
+            <h2>Sign in</h2>
+            <p>Internal access only. Use your RL account.</p>
           </div>
 
-          <div className="space-y-1.5">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="••••••••"
-            />
-          </div>
+          <form action={signIn} className="login-form">
+            {error && (
+              <div className="login-error">
+                <AlertCircle size={15} strokeWidth={2.5} />
+                {error}
+              </div>
+            )}
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg px-4 py-2.5 transition-colors"
-          >
-            Sign in
-          </button>
-        </form>
+            <div className="field">
+              <label htmlFor="email">Email address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="you@revenueladder.co.uk"
+              />
+            </div>
+
+            <div className="field">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autoComplete="current-password"
+                placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+              />
+            </div>
+
+            <button type="submit" className="login-submit">
+              Sign in <ArrowRight size={15} strokeWidth={2.5} />
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )
