@@ -27,8 +27,8 @@ const AVATAR_CLUSTER = [
 
 export function BeforeAfterSection() {
   return (
-    <section style={{ padding: "112px 0", background: "var(--rl-bg)" }} id="before-after">
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+    <section className="rl-section-pad" style={{ background: "var(--rl-bg)" }} id="before-after">
+      <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
           <span style={{
@@ -50,7 +50,7 @@ export function BeforeAfterSection() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="grid-cols-1 lg:grid-cols-2">
+        <div className="rl-grid-2">
 
           <div style={{
             background: "var(--rl-surface)", border: "2px solid var(--rl-border)",

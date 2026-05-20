@@ -116,6 +116,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -187,7 +188,7 @@ export function Nav() {
         </Link>
 
         {/* Desktop nav links */}
-        <div style={{ display: "flex", gap: 2 }} className="hidden lg:flex" role="menubar">
+        <div style={{ gap: 2 }} className="hidden lg:flex" role="menubar">
           {(
             [
               { label: "How it works", href: "/#how-it-works" },
@@ -209,18 +210,18 @@ export function Nav() {
 
         {/* CTAs */}
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <Link href="/login" className="hidden sm:block" style={{ background: "transparent", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, color: "var(--rl-fg-2)", display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+          <Link href="/login" className="hidden lg:inline-flex" style={{ background: "transparent", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, color: "var(--rl-fg-2)", alignItems: "center", textDecoration: "none" }}>
             Sign in
           </Link>
-          <Link href="/contact" style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, display: "inline-flex", alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(26,77,46,.28)", textDecoration: "none" }}>
+          <Link href="/contact" className="hidden lg:inline-flex" style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(26,77,46,.28)", textDecoration: "none" }}>
             Book a call <ArrowRight size={14} />
           </Link>
           <button
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((o) => !o)}
+            onClick={() => { setMobileOpen((o) => !o); setMobileServicesOpen(false) }}
             className="flex lg:hidden"
-            style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(26,77,46,.06)", border: "1px solid rgba(26,77,46,.10)", color: "var(--rl-forest)", cursor: "pointer", display: "none", alignItems: "center", justifyContent: "center" }}
+            style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(26,77,46,.06)", border: "1px solid rgba(26,77,46,.10)", color: "var(--rl-forest)", cursor: "pointer", alignItems: "center", justifyContent: "center" }}
           >
             {mobileOpen ? <X size={20} strokeWidth={2.25} /> : (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round">
@@ -238,6 +239,7 @@ export function Nav() {
         background: "var(--rl-surface)", borderRadius: 20,
         border: "1px solid var(--rl-border-soft)", boxShadow: "var(--rl-shadow-xl)",
         padding: 16, display: "flex", flexDirection: "column", gap: 4,
+        maxHeight: "calc(100svh - 100px)", overflowY: "auto",
         opacity: mobileOpen ? 1 : 0, transform: mobileOpen ? "translateY(0)" : "translateY(-6px)",
         pointerEvents: mobileOpen ? "auto" : "none",
         transition: "opacity .25s var(--rl-ease-out), transform .25s var(--rl-ease-out)",
@@ -245,7 +247,6 @@ export function Nav() {
         {(
           [
             { label: "How it works", href: "/#how-it-works" },
-            { label: "Services",     href: "/services" },
             { label: "Blog",         href: "/blog" },
             { label: "Pricing",      href: "/pricing" },
             { label: "About",        href: "/about" },
@@ -255,11 +256,44 @@ export function Nav() {
             {label} <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
           </Link>
         ))}
-        <div style={{ marginTop: 12, paddingTop: 16, borderTop: "1px solid var(--rl-border-soft)", display: "flex", gap: 8 }}>
-          <Link href="/login" onClick={() => setMobileOpen(false)} style={{ flex: 1, background: "transparent", border: "2px solid rgba(26,77,46,.28)", color: "var(--rl-forest)", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 42, borderRadius: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Sign in</Link>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ flex: 1, background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 42, borderRadius: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, textDecoration: "none" }}>
+
+        {/* Services accordion */}
+        <div>
+          <button
+            onClick={() => setMobileServicesOpen((o) => !o)}
+            style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "14px 16px", borderRadius: 12, fontSize: 15, fontWeight: 600, color: "var(--rl-fg-1)", background: mobileServicesOpen ? "rgba(26,77,46,.05)" : "none", border: "none", cursor: "pointer" }}
+          >
+            Services
+            <ChevronDown size={14} style={{ color: "var(--rl-fg-3)", transform: mobileServicesOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
+          </button>
+          {mobileServicesOpen && (
+            <div style={{ paddingLeft: 8, paddingBottom: 8, display: "flex", flexDirection: "column", gap: 1, maxHeight: "40vh", overflowY: "auto" }}>
+              <div style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".14em", color: "var(--rl-fg-3)", padding: "8px 12px 4px" }}>AI &amp; Automation</div>
+              {MEGA_COL1.links.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMobileServicesOpen(false) }} style={{ display: "block", padding: "9px 12px", borderRadius: 10, fontSize: 14, fontWeight: 500, color: "var(--rl-fg-2)", textDecoration: "none" }}>
+                  {l.label}
+                </Link>
+              ))}
+              <div style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".14em", color: "var(--rl-fg-3)", padding: "10px 12px 4px" }}>Build &amp; Ship</div>
+              {MEGA_COL2.links.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMobileServicesOpen(false) }} style={{ display: "block", padding: "9px 12px", borderRadius: 10, fontSize: 14, fontWeight: 500, color: "var(--rl-fg-2)", textDecoration: "none" }}>
+                  {l.label}
+                </Link>
+              ))}
+              <div style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".14em", color: "var(--rl-fg-3)", padding: "10px 12px 4px" }}>Engagement Models</div>
+              {MEGA_COL2.engagementLinks.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMobileServicesOpen(false) }} style={{ display: "block", padding: "9px 12px", borderRadius: 10, fontSize: 14, fontWeight: 500, color: "var(--rl-fg-2)", textDecoration: "none" }}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+        <div style={{ marginTop: 12, paddingTop: 16, borderTop: "1px solid var(--rl-border-soft)", display: "flex", flexDirection: "column", gap: 8 }}>
+          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 48, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, textDecoration: "none" }}>
             Book a call <ArrowRight size={14} />
           </Link>
+          <Link href="/login" onClick={() => setMobileOpen(false)} style={{ background: "transparent", border: "2px solid rgba(26,77,46,.28)", color: "var(--rl-forest)", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 42, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Sign in</Link>
         </div>
       </div>
 

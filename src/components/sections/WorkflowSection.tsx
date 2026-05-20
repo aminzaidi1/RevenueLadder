@@ -118,8 +118,8 @@ export function WorkflowSection() {
   const uc = USE_CASES.find((u) => u.id === activeId) ?? USE_CASES[0]
 
   return (
-    <section style={{ padding: "112px 0", background: "var(--rl-bg-warm)" }} id="how">
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+    <section className="rl-section-pad" style={{ background: "var(--rl-bg-warm)" }} id="how">
+      <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 48px", textAlign: "center", alignItems: "center" }}>
           <span style={{
