@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Montserrat, Inter, JetBrains_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -84,6 +85,7 @@ export default function RootLayout({
         <div style={{ position: "relative", zIndex: 1 }}>
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   )
