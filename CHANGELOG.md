@@ -3,9 +3,10 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased] - 2026-05-20
+## [Unreleased] - 2026-05-21
 
 ### Added
+- Vercel Analytics via `@vercel/analytics/next` (page view and event tracking)
 - Contact page and form with email delivery via Resend API
 - Self-hosted Montserrat and Inter fonts via `next/font` (eliminates Google Fonts network requests)
 - Full mobile-first responsive layout across all homepage sections using CSS utility classes (`rl-px`, `rl-section-pad`, `rl-hero-grid`, `rl-grid-2/3/4/6`, `rl-footer-grid`, `rl-footer-bottom`)
