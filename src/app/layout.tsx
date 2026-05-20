@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Montserrat, Inter } from "next/font/google"
+import { Montserrat, Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -13,6 +13,13 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "700"],
   display: "swap",
 })
 
@@ -70,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${montserrat.variable} ${inter.variable}`}
+      className={`${montserrat.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-dvh flex flex-col antialiased">

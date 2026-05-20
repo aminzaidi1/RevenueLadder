@@ -1,4 +1,4 @@
-export type BlogPost = {
+export type DbBlogPost = {
   id: string
   title: string
   slug: string

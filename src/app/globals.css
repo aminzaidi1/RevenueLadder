@@ -160,6 +160,26 @@
 @media (min-width: 640px) {
   .rl-footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
 }
+
+/* Contact page two-column layout (stacked mobile, form + sidebar desktop) */
+.rl-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 1024px) {
+  .rl-contact-grid { grid-template-columns: 1fr 420px; gap: 40px; align-items: start; }
+}
+
+/* Two-field row inside forms (stacked mobile, side-by-side desktop) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) {
+  .form-row { grid-template-columns: 1fr 1fr; }
+}
 .section.warm  { background: var(--rl-bg-warm); }
 .section.dark  { background: var(--rl-forest-ink); color: #fff; }
 .section.dark::before {

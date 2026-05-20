@@ -217,6 +217,17 @@
 }
 .field input:focus { border-color: var(--rl-forest); box-shadow: 0 0 0 4px rgba(26,77,46,.10); }
 .field input::placeholder { color: var(--rl-fg-3); }
+.field select, .field textarea {
+  border-radius: var(--rl-radius-md); border: 2px solid var(--rl-border);
+  background: var(--rl-surface); padding: 0 14px;
+  font-size: 14px; outline: none; color: var(--rl-fg-1); font-family: var(--rl-font-body);
+  transition: border-color var(--rl-dur-base), box-shadow var(--rl-dur-base);
+  width: 100%;
+}
+.field select { height: 42px; }
+.field textarea { padding: 12px 14px; resize: vertical; min-height: 120px; }
+.field select:focus, .field textarea:focus { border-color: var(--rl-forest); box-shadow: 0 0 0 4px rgba(26,77,46,.10); }
+.field textarea::placeholder { color: var(--rl-fg-3); }
 
 /* ── Login page ─────────────────────────────────────────────────── */
 .login-root { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
