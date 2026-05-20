@@ -1,6 +1,6 @@
 # /ship
 
-Full deployment flow: feature branch -> dev -> staging -> main.
+Full deployment flow: feature branch -> dev -> main.
 Runs checks, opens PRs, waits for CI, merges at each stage, generates changelog.
 
 ---
@@ -54,7 +54,7 @@ Get the current branch name:
 git branch --show-current
 ```
 
-If the branch is `dev`, `staging`, or `main`, stop and tell the user:
+If the branch is `dev` or `main`, stop and tell the user:
 "You are on a protected branch. Create a feature branch first with: git checkout -b feat/<name>"
 
 Otherwise push:
@@ -150,38 +150,12 @@ git log origin/dev --oneline -5
 
 ---
 
-## Step 7 -- Open PR: dev -> staging, then merge it
-
-Switch to dev and pull:
-```bash
-git checkout dev
-git pull origin dev
-```
-
-Open the PR:
-```bash
-gh pr create --base staging --head dev --title "chore: promote dev to staging" --body "Promoting dev to staging for QA. See individual commits for details."
-```
-
-Capture the PR number.
-
-Wait for CI on this PR using the same polling logic as Step 5.
-
-Once CI is green, merge:
-```bash
-gh pr merge <PR-number> --merge
-```
-
-If any part fails, stop and report the error.
-
----
-
-## Step 8 -- Generate changelog entry
+## Step 7 -- Generate changelog entry
 
 Invoke the changelog agent defined at `.claude/agents/changelog.md`.
 
 The agent should:
-1. Run `git log staging..origin/staging --oneline` (after the dev->staging merge) to get the commits being promoted.
+1. Run `git log main..origin/dev --oneline` to get commits being promoted.
 2. Generate a changelog entry in Keep a Changelog format:
 ```
 ## [Unreleased] - <YYYY-MM-DD>
@@ -200,12 +174,12 @@ The agent should:
 
 ---
 
-## Step 9 -- Append changelog and push to staging
+## Step 8 -- Append changelog and push to dev
 
-Pull latest staging:
+Pull latest dev:
 ```bash
-git checkout staging
-git pull origin staging
+git checkout dev
+git pull origin dev
 ```
 
 Check if `CHANGELOG.md` exists:
@@ -222,24 +196,24 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ```
 
-Prepend the changelog entry from Step 8 directly after the header (before any existing entries).
+Prepend the changelog entry from Step 7 directly after the header (before any existing entries).
 
 Commit and push:
 ```bash
 git add CHANGELOG.md
 git commit -m "chore: update changelog"
-git push origin staging
+git push origin dev
 ```
 
 If push fails, stop and report the error.
 
 ---
 
-## Step 10 -- Open PR: staging -> main, then merge it
+## Step 9 -- Open PR: dev -> main, then merge it
 
 Open the PR:
 ```bash
-gh pr create --base main --head staging --title "chore: release to production" --body "Promoting staging to main. Changelog updated. CI passed on staging."
+gh pr create --base main --head dev --title "chore: release to production" --body "Promoting dev to main. Changelog updated. CI passed on dev."
 ```
 
 Capture the PR number.
@@ -255,7 +229,7 @@ If any part fails, stop and report.
 
 ---
 
-## Step 11 -- Report completion
+## Step 10 -- Report completion
 
 Run:
 ```bash
@@ -269,7 +243,7 @@ Report to the user:
 Ship complete.
 
 Feature branch : <branch-name>
-Merged into    : dev -> staging -> main
+Merged into    : dev -> main
 Final commit   : <hash> <message>
 Changelog      : CHANGELOG.md updated
 ```

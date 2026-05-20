@@ -1,9 +1,16 @@
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+import { Nav } from "@/components/layout/Nav"
+import { Footer } from "@/components/layout/Footer"
+
+export default function PublicLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <>
-      {/* <Header /> */}
-      <main>{children}</main>
-      {/* <Footer /> */}
+      <Nav />
+      <main className="flex-1">{children}</main>
+      <Footer />
     </>
   )
 }

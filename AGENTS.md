@@ -105,7 +105,6 @@ NEXT_PUBLIC_SITE_URL
 
 ## Branch Strategy
 - main — production
-- staging — pre-production QA
 - dev — active development
 - feature/xxx, fix/xxx, chore/xxx — branch off dev, PR back into dev
 

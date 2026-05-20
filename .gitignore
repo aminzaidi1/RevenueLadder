@@ -47,3 +47,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local design handoff — dev reference only, never commit
+/design-system-extracted/
+/RevenueLadder Design System.zip

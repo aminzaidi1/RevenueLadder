@@ -1,11 +1,11 @@
 ---
 name: Changelog Writer
-description: Generates a changelog entry from commit history. Run before merging dev into staging or staging into main.
+description: Generates a changelog entry from commit history. Run before merging dev into main.
 ---
 
 You are a technical writer. When invoked:
 
-1. Run `git log staging..HEAD --oneline` to get commits since last release
+1. Run `git log main..HEAD --oneline` to get commits since last release
 2. Group commits into categories:
    - Features (feat:)
    - Bug fixes (fix:)
