@@ -84,6 +84,11 @@ Reference files from the handoff bundle:
 - project/ui_kits/website/ — full website UI kit
 - project/ui_kits/app/ — dashboard UI kit
 
+## Tooling
+- GitHub CLI is installed at `C:\Program Files\GitHub CLI\gh.exe` -- it is NOT in PATH
+- Always invoke it via full path: `& "C:\Program Files\GitHub CLI\gh.exe" <args>` in PowerShell
+- Never assume `gh` is on PATH; use the full path every time
+
 ## Key Rules
 - All colour values from --rl-* CSS variables only — never hardcode hex
 - Tailwind only for layout/spacing — CSS variables for brand tokens
