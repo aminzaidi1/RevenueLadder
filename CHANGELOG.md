@@ -6,6 +6,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased] - 2026-05-21
 
 ### Added
+- Blog CMS backed by Supabase: create, edit, and delete posts from `/dashboard/blog`
+- Tiptap WYSIWYG editor with bold, italic, headings, lists, blockquote, inline code, links, and dividers
+- Image upload to Supabase Storage (`blog-images` bucket) or insert by URL, dropped inline at cursor position
+- CTA block node: branded banner (dark forest or gold) with editable heading, body, button label, and URL
+- Callout card node: highlight box with emoji icon and three tone options (neutral, forest, gold)
+- API routes: `GET/POST /api/blog`, `GET/PUT/DELETE /api/blog/[slug]`, `POST /api/upload`
+- Dashboard pages: blog list (live from Supabase), `/dashboard/blog/new`, `/dashboard/blog/[slug]` edit with delete
+- `src/lib/supabase/blog.ts` typed access layer with `listBlogPosts`, `getBlogPost`, `createBlogPost`, `updateBlogPost`, `deleteBlogPost`
+- Seeded 12 original blog posts into Supabase with correct author, category, read time, and publication dates
+
+---
+
+## [Unreleased] - 2026-05-21
+
+### Added
 - Vercel Analytics via `@vercel/analytics/next` (page view and event tracking)
 - Contact page and form with email delivery via Resend API
 - Self-hosted Montserrat and Inter fonts via `next/font` (eliminates Google Fonts network requests)
