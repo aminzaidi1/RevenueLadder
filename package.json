@@ -9,6 +9,7 @@
     "lint": "eslint src/"
   },
   "dependencies": {
+    "@floating-ui/dom": "1.7.6",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.49.4",
     "@tiptap/extension-image": "^3.23.5",
