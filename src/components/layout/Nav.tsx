@@ -191,7 +191,7 @@ export function Nav() {
         <div style={{ gap: 2 }} className="hidden lg:flex" role="menubar">
           {(
             [
-              { label: "How it works", href: "/#how-it-works" },
+              // { label: "How it works", href: "/#how-it-works" },
               { label: "Blog",         href: "/blog" },
               { label: "Pricing",      href: "/pricing" },
               { label: "About",        href: "/about" },
@@ -246,7 +246,7 @@ export function Nav() {
       }} className="lg:hidden">
         {(
           [
-            { label: "How it works", href: "/#how-it-works" },
+            // { label: "How it works", href: "/#how-it-works" },
             { label: "Blog",         href: "/blog" },
             { label: "Pricing",      href: "/pricing" },
             { label: "About",        href: "/about" },

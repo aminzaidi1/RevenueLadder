@@ -220,7 +220,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rl-btn rl-btn-primary"
+        className="btn primary"
         style={{ alignSelf: "flex-start", minWidth: 160, opacity: status === "loading" ? 0.7 : 1 }}
       >
         {status === "loading" ? "Sending..." : "Send enquiry"}

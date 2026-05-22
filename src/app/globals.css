@@ -161,14 +161,17 @@
   .rl-footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
 }
 
-/* Contact page two-column layout (stacked mobile, form + sidebar desktop) */
+/* Contact page two-column layout (stacked mobile, equal cols tablet, form+sidebar desktop) */
 .rl-contact-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
+@media (min-width: 768px) {
+  .rl-contact-grid { grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+}
 @media (min-width: 1024px) {
-  .rl-contact-grid { grid-template-columns: 1fr 420px; gap: 40px; align-items: start; }
+  .rl-contact-grid { grid-template-columns: 1fr 420px; gap: 40px; }
 }
 
 /* Two-field row inside forms (stacked mobile, side-by-side desktop) */
@@ -428,6 +431,11 @@
 .pr-tt-card .who .nm { font-size: 13px; font-weight: 700; color: var(--rl-fg-1); }
 .pr-tt-card .who .rl { font-size: 11px; color: var(--rl-fg-3); }
 
+.pr-matrix-outer {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 22px;
+}
 .pr-matrix { background: var(--rl-surface); border: 2px solid var(--rl-border-soft); border-radius: 22px; overflow: hidden; }
 .pr-matrix-head { display: grid; grid-template-columns: 1.8fr repeat(3, 1fr); background: var(--rl-bg-warm); }
 .pr-matrix-head > div { padding: 22px 20px; border-right: 1px solid var(--rl-border-soft); border-bottom: 2px solid var(--rl-border); }
@@ -510,6 +518,18 @@
   .pr-stats { grid-template-columns: 1fr; }
   .pr-stats > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.06); }
   .pr-addons-grid { grid-template-columns: 1fr; }
+
+  /* Matrix: fixed column widths so the grid never collapses; outer wrapper scrolls */
+  .pr-matrix { min-width: 480px; }
+  .pr-matrix-head,
+  .pr-matrix-row { grid-template-columns: 155px repeat(3, 1fr); }
+  .pr-matrix-head > div,
+  .pr-matrix-row > div { padding: 12px 10px; }
+  .pr-matrix-head .col .nm { font-size: 14px; }
+  .pr-matrix-head .col .p  { font-size: 10px; }
+  .pr-matrix-group .group-title { padding: 12px 10px; font-size: 11px; }
+  .pr-matrix-row .label-cell { font-size: 12px; }
+  .pr-matrix-row .cell-val   { font-size: 11px; }
 }
 
 /* =====================================================================

@@ -89,6 +89,7 @@ export function PrMatrixSection() {
           </p>
         </div>
 
+        <div className="pr-matrix-outer">
         <div className="pr-matrix">
           <div className="pr-matrix-head">
             <div className="row-h">Feature</div>
@@ -123,6 +124,7 @@ export function PrMatrixSection() {
               ))}
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

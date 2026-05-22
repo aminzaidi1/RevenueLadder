@@ -6,7 +6,6 @@ import { ServicesSection } from "@/components/sections/ServicesSection"
 import { WorkflowSection } from "@/components/sections/WorkflowSection"
 import { AiVsHumanSection } from "@/components/sections/AiVsHumanSection"
 import { IndustriesSection } from "@/components/sections/IndustriesSection"
-import { TeamSection } from "@/components/sections/TeamSection"
 import { BlogTeaserSection } from "@/components/sections/BlogTeaserSection"
 import { CtaSection } from "@/components/sections/CtaSection"
 
@@ -73,7 +72,6 @@ export default function HomePage() {
       <WorkflowSection />
       <AiVsHumanSection />
       <IndustriesSection />
-      <TeamSection />
       <BlogTeaserSection />
       <CtaSection />
     </>

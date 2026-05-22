@@ -1,23 +1,47 @@
 "use client"
 
+import Link from "next/link"
 import Image from "next/image"
 
-const COLS = [
+const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Product",
-    links: ["How it works", "Pricing", "Case studies", "Book a call"],
+    links: [
+      { label: "Pricing",       href: "/pricing"      },
+      { label: "Case studies",  href: "/case-studies" },
+      { label: "Book a call",   href: "/contact"      },
+    ],
   },
   {
     title: "Capabilities",
-    links: ["Web development", "Marketing automation", "SEO", "Content & social", "Chat & voice agents", "AI consultation"],
+    links: [
+      { label: "Web development",      href: "/services/web-development"        },
+      { label: "Marketing automation", href: "/services/marketing-automation"   },
+      { label: "SEO",                  href: "/services/seo"                    },
+      { label: "Content & social",     href: "/services/automated-social-media" },
+      { label: "Chat & voice agents",  href: "/services/chatbots"               },
+      { label: "AI consultation",      href: "/services/ai-consultation"        },
+    ],
   },
   {
     title: "Industries",
-    links: ["Coaches & Consultants", "E-commerce & Retail", "Real Estate", "Healthcare & Wellness", "Restaurants & Hospitality", "View all industries"],
+    links: [
+      { label: "Coaches & Consultants",     href: "/industries/coaches-consultants"      },
+      { label: "E-commerce & Retail",       href: "/industries/ecommerce-retail"         },
+      { label: "Real Estate",               href: "/industries/real-estate"              },
+      { label: "Healthcare & Wellness",     href: "/industries/healthcare-wellness"      },
+      { label: "Restaurants & Hospitality", href: "/industries/restaurants-hospitality"  },
+      { label: "View all industries",       href: "/industries"                          },
+    ],
   },
   {
     title: "Company",
-    links: ["About us", "Meet the team", "Customer stories", "Blog", "Contact", "Privacy & terms"],
+    links: [
+      { label: "About us",        href: "/about"         },
+      { label: "Blog",            href: "/blog"          },
+      { label: "Contact",         href: "/contact"       },
+      { label: "Privacy & terms", href: "/privacy-terms" },
+    ],
   },
 ]
 
@@ -57,13 +81,13 @@ export function Footer() {
                 {title}
               </h4>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" style={{ fontSize: "13.5px", color: "rgba(255,255,255,.55)", textDecoration: "none", transition: "color var(--rl-dur-base)", display: "block" }}
+                {links.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} style={{ fontSize: "13.5px", color: "rgba(255,255,255,.55)", textDecoration: "none", transition: "color var(--rl-dur-base)", display: "block" }}
                       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff" }}
                       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.55)" }}>
-                      {link}
-                    </a>
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>
