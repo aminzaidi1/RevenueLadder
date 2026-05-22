@@ -6,7 +6,8 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient()
     await supabase.auth.signOut()
     return NextResponse.redirect(new URL("/login", request.url))
-  } catch {
+  } catch (error) {
+    console.error("Signout error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

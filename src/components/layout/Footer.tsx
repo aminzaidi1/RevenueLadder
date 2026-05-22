@@ -49,7 +49,7 @@ const SOCIALS = ["LinkedIn", "YouTube", "X", "Email"]
 
 export function Footer() {
   return (
-    <footer style={{ background: "var(--rl-forest-ink)", color: "rgba(255,255,255,.55)", padding: "64px 0 32px", marginTop: 64, position: "relative", overflow: "hidden" }}>
+    <footer style={{ background: "var(--rl-forest-ink)", color: "var(--rl-fg-on-dark-2)", padding: "64px 0 32px", marginTop: 64, position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
         <div className="rl-footer-grid" style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
 
@@ -83,9 +83,7 @@ export function Footer() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 {links.map(({ label, href }) => (
                   <li key={label}>
-                    <Link href={href} style={{ fontSize: "13.5px", color: "rgba(255,255,255,.55)", textDecoration: "none", transition: "color var(--rl-dur-base)", display: "block" }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff" }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.55)" }}>
+                    <Link href={href} className="footer-link" style={{ fontSize: "13.5px", textDecoration: "none", display: "block" }}>
                       {label}
                     </Link>
                   </li>
@@ -99,14 +97,11 @@ export function Footer() {
           <div>© 2026 RevenueLadder Ltd. Registered in Wales · 14528221.</div>
           <div style={{ display: "flex", gap: 8 }}>
             {SOCIALS.map((label) => (
-              <a key={label} href="#" aria-label={label} style={{
-                width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,.06)",
+              <a key={label} href="#" aria-label={label} className="footer-social" style={{
+                width: 32, height: 32, borderRadius: "50%",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "rgba(255,255,255,.5)", transition: "all var(--rl-dur-base)", textDecoration: "none",
-                fontSize: 9, fontWeight: 800,
-              }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "var(--rl-gold)"; el.style.color = "var(--rl-forest)" }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(255,255,255,.06)"; el.style.color = "rgba(255,255,255,.5)" }}>
+                textDecoration: "none", fontSize: 9, fontWeight: 800,
+              }}>
                 {label[0]}
               </a>
             ))}

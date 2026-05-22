@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation"
+import { headers } from "next/headers"
 import { createClient } from "@/lib/supabase/server"
+import { checkRateLimit } from "@/lib/rate-limit"
 import type { Metadata } from "next"
 import { AlertCircle, ArrowRight } from "lucide-react"
 
@@ -9,6 +11,15 @@ export const metadata: Metadata = {
 
 async function signIn(formData: FormData) {
   "use server"
+  const headersList = await headers()
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0].trim() ??
+    headersList.get("x-real-ip") ??
+    "127.0.0.1"
+  if (!checkRateLimit(ip, 10, 15 * 60 * 1000)) {
+    redirect("/login?error=Too+many+attempts.+Please+wait+15+minutes.")
+  }
+
   const email = formData.get("email") as string
   const password = formData.get("password") as string
 

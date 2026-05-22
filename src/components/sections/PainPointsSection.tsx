@@ -1,5 +1,6 @@
 import { Monitor, Inbox, Clock, X } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { SectionHeader } from "@/components/ui/SectionHeader"
 
 interface PainCard {
   Icon: LucideIcon
@@ -46,29 +47,11 @@ export function PainPointsSection() {
     <section className="rl-section-pad" style={{ background: "var(--rl-bg-warm)" }} id="why">
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center",
-            fontFamily: "var(--rl-font-body)", fontSize: 11, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: ".18em",
-            color: "var(--rl-forest)", background: "var(--rl-forest-tint)",
-            padding: "5px 14px", borderRadius: 9999,
-          }}>
-            The honest bit
-          </span>
-          <h2 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800,
-            fontSize: "clamp(34px, 4.2vw, 52px)", lineHeight: 1.05, letterSpacing: "-.025em",
-            color: "var(--rl-fg-1)",
-          }}>
-            You don&apos;t have a strategy problem.<br />
-            You have a <em style={{ fontStyle: "italic", color: "var(--rl-forest)" }}>capacity</em> problem.
-          </h2>
-          <p style={{ fontSize: 18, color: "var(--rl-fg-2)", lineHeight: 1.65, maxWidth: 640 }}>
-            Most small-business owners we meet already know what to do. They just haven&apos;t got the hours,
-            the team, or the right tools wired together to actually do it. Sound familiar?
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="The honest bit"
+          heading={<>You don&apos;t have a strategy problem.<br />You have a <em>capacity</em> problem.</>}
+          description={<>Most small-business owners we meet already know what to do. They just haven&apos;t got the hours, the team, or the right tools wired together to actually do it. Sound familiar?</>}
+        />
 
         <div className="rl-grid-3">
           {PAIN_CARDS.map(({ Icon, title, quote, items }) => (

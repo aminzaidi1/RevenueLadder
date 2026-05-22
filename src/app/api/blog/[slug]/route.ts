@@ -11,7 +11,8 @@ export async function GET(_req: Request, { params }: Params) {
     const post = await getBlogPost(slug)
     if (!post) return NextResponse.json({ error: "Not found" }, { status: 404 })
     return NextResponse.json(post)
-  } catch {
+  } catch (error) {
+    console.error("Blog slug API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
@@ -34,7 +35,8 @@ export async function PUT(request: Request, { params }: Params) {
 
     const post = await updateBlogPost(slug, body)
     return NextResponse.json(post)
-  } catch {
+  } catch (error) {
+    console.error("Blog slug API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
@@ -51,7 +53,8 @@ export async function DELETE(_req: Request, { params }: Params) {
 
     await deleteBlogPost(slug)
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (error) {
+    console.error("Blog slug API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

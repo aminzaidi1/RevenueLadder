@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
-import { BLOG_POSTS, BLOG_CATEGORIES, type BlogPost } from "@/lib/blog-data"
+import { type BlogPost, type BlogCategory } from "@/lib/blog-data"
 
 const POSTS_PER_PAGE = 9
 
@@ -96,12 +96,12 @@ function BlogCard({ post }: { post: BlogPost }) {
   )
 }
 
-export function BlogIndexClient() {
+export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; categories: BlogCategory[] }) {
   const [filter, setFilter] = useState("all")
   const [page, setPage] = useState(1)
 
-  const featured = BLOG_POSTS.find(p => p.featured) ?? BLOG_POSTS[0]
-  const rest = BLOG_POSTS.filter(p => p !== featured)
+  const featured = posts.find(p => p.featured) ?? posts[0]
+  const rest = posts.filter(p => p !== featured)
   const filtered = filter === "all" ? rest : rest.filter(p => p.catId === filter)
   const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE)
   const visiblePosts = filtered.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE)
@@ -142,7 +142,7 @@ export function BlogIndexClient() {
 
           {/* Filter tabs */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", paddingBottom: 48 }}>
-            {BLOG_CATEGORIES.map(c => (
+            {categories.map(c => (
               <button
                 key={c.id}
                 onClick={() => handleFilter(c.id)}

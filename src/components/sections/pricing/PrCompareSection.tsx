@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import { Briefcase, Layers, Clock, RefreshCw, Shield } from "lucide-react"
+import { TIERS } from "@/lib/pricing-data"
 
 const ROWS = [
   {
@@ -66,7 +67,7 @@ export function PrCompareSection() {
           <div className="head">DIY<span className="sub">You + your evenings</span></div>
           <div className="head">Full-time hire<span className="sub">£3,200 + overhead</span></div>
           <div className="head">Traditional agency<span className="sub">£8k--£15k retainer</span></div>
-          <div className="head us">RevenueLadder<span className="sub">From £1,800 / mo</span></div>
+          <div className="head us">RevenueLadder<span className="sub">From £{TIERS[0].monthly.toLocaleString("en-GB")} / mo</span></div>
 
           {ROWS.map(({ icon: Icon, label, diy, hire, agency, us }) => (
             <Fragment key={label}>

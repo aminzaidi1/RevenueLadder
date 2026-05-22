@@ -1,5 +1,6 @@
 import { Check, Sparkles, Workflow, Briefcase, Target, Server } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { TIERS, fmtPrice } from "@/lib/pricing-data"
 
 type CellValue = "on" | "off" | string
 
@@ -93,19 +94,13 @@ export function PrMatrixSection() {
         <div className="pr-matrix">
           <div className="pr-matrix-head">
             <div className="row-h">Feature</div>
-            <div className="col">
-              <div className="nm">Assist</div>
-              <div className="p">£1,800 / mo</div>
-            </div>
-            <div className="col feat">
-              <div className="ribbon">Best fit</div>
-              <div className="nm">Delegate</div>
-              <div className="p">£3,400 / mo</div>
-            </div>
-            <div className="col">
-              <div className="nm">Elevate</div>
-              <div className="p">£5,400 / mo</div>
-            </div>
+            {TIERS.map((tier) => (
+              <div key={tier.id} className={`col${tier.featured ? " feat" : ""}`}>
+                {tier.featured && <div className="ribbon">Best fit</div>}
+                <div className="nm">{tier.name}</div>
+                <div className="p">£{fmtPrice(tier.monthly)} / mo</div>
+              </div>
+            ))}
           </div>
 
           {GROUPS.map((group) => (

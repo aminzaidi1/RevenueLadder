@@ -83,7 +83,7 @@ function MegaLink({ label, href, dark = false }: { label: string; href: string; 
       }}
     >
       <span>{label}</span>
-      <ArrowRight size={14} style={{ opacity: 0.55 }} />
+      <ArrowRight size={14} style={{ opacity: 0.55 }} aria-hidden="true" />
     </Link>
   )
 }

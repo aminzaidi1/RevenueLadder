@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit"
 
 interface ContactBody {
   name: string
@@ -26,6 +27,10 @@ function isValidBody(body: unknown): body is ContactBody {
 
 export async function POST(request: Request) {
   try {
+    if (!checkRateLimit(getClientIp(request), 5, 60 * 60 * 1000)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 })
+    }
+
     const body: unknown = await request.json()
 
     if (!isValidBody(body)) {
@@ -50,7 +55,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true }, { status: 201 })
-  } catch {
+  } catch (error) {
+    console.error("Contact API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

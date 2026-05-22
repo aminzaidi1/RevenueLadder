@@ -69,7 +69,11 @@ export async function updateBlogPost(slug: string, updates: DbBlogPostUpdate): P
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("blog_posts")
-    .update({ ...updates, updated_at: new Date().toISOString() })
+    .update(
+      Object.keys(updates).length > 0
+        ? { ...updates, updated_at: new Date().toISOString() }
+        : updates
+    )
     .eq("slug", slug)
     .select()
     .single()
