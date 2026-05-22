@@ -34,6 +34,32 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
   { id: "cases", label: "Case studies", count: 1  },
 ]
 
+import type { DbBlogPost } from "@/lib/supabase/blog"
+
+export function mapDbPost(db: DbBlogPost): BlogPost {
+  const cat = db.category ?? "General"
+  const catId = cat.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+  const nameParts = db.author.trim().split(/\s+/)
+  const initials = nameParts.map((p) => p[0]?.toUpperCase() ?? "").join("").slice(0, 2)
+  const date = new Date(db.created_at).toLocaleDateString("en-GB", {
+    day: "numeric", month: "short", year: "numeric",
+  })
+  return {
+    slug: db.slug,
+    cat,
+    catId,
+    catTone: cat === "AI" || cat === "Case Studies" ? "gold" : undefined,
+    title: db.title,
+    excerpt: db.excerpt ?? "",
+    date,
+    readMins: db.reading_time_minutes ?? 5,
+    author: { initials, name: db.author, role: db.author_role ?? "" },
+    glyph: cat.slice(0, 3).toUpperCase(),
+    glyphSub: cat,
+    featured: db.featured,
+  }
+}
+
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "welsh-voice-agents-bryn",

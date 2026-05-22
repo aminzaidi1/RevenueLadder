@@ -1,4 +1,5 @@
 import { X, CheckCircle, ArrowRight, Star } from "lucide-react"
+import { SectionHeader } from "@/components/ui/SectionHeader"
 
 const BEFORE_TASKS = [
   "Reply to enquiry from Wednesday",
@@ -30,25 +31,11 @@ export function BeforeAfterSection() {
     <section className="rl-section-pad" style={{ background: "var(--rl-bg)" }} id="before-after">
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center",
-            fontFamily: "var(--rl-font-body)", fontSize: 11, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: ".18em",
-            color: "var(--rl-fg-3)", background: "var(--rl-slate-100)",
-            padding: "5px 14px", borderRadius: 9999,
-          }}>
-            Before &amp; after
-          </span>
-          <h2 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800,
-            fontSize: "clamp(34px, 4.2vw, 52px)", lineHeight: 1.05, letterSpacing: "-.025em",
-            color: "var(--rl-fg-1)",
-          }}>
-            What your <em style={{ fontStyle: "italic", color: "var(--rl-forest)" }}>Monday</em> looks like<br />
-            before and after we get involved.
-          </h2>
-        </div>
+        <SectionHeader
+          eyebrow="Before &amp; after"
+          heading={<>What your <em>Monday</em> looks like<br />before and after we get involved.</>}
+          eyebrowVariant="neutral"
+        />
 
         <div className="rl-grid-2">
 
@@ -94,7 +81,7 @@ export function BeforeAfterSection() {
             <div style={{ position: "relative", zIndex: 1 }}>
               <span style={{
                 display: "inline-block", fontSize: 11, fontWeight: 800, textTransform: "uppercase",
-                letterSpacing: ".14em", color: "#86efac", background: "rgba(34,197,94,.14)",
+                letterSpacing: ".14em", color: "var(--rl-success)", background: "rgba(34,197,94,.14)",
                 border: "1px solid rgba(34,197,94,.25)", padding: "4px 12px", borderRadius: 9999, marginBottom: 18,
               }}>
                 After
@@ -111,7 +98,7 @@ export function BeforeAfterSection() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 11, marginBottom: 26 }}>
                 {AFTER_CHECKLIST.map((item) => (
                   <li key={item} style={{ display: "flex", gap: 10, fontSize: 14, color: "rgba(255,255,255,.85)", alignItems: "center" }}>
-                    <CheckCircle size={14} strokeWidth={2.5} style={{ color: "#86efac", flexShrink: 0 }} />
+                    <CheckCircle size={14} strokeWidth={2.5} style={{ color: "var(--rl-success)", flexShrink: 0 }} />
                     {item}
                   </li>
                 ))}

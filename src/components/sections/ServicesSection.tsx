@@ -2,6 +2,7 @@
 
 import { Globe, Search, PenTool, Share2, Mail, Mic, MessageSquare, Workflow, Bot, Layers, Server, Sparkles, CheckCircle } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { SectionHeader } from "@/components/ui/SectionHeader"
 
 interface Service {
   icon: LucideIcon
@@ -60,51 +61,20 @@ export function ServicesSection() {
   return (
     <section id="services" className="rl-section-pad" style={{ background: "var(--rl-bg-warm)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center",
-            fontFamily: "var(--rl-font-body)", fontSize: 11, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: ".18em",
-            color: "var(--rl-forest)", background: "var(--rl-forest-tint)",
-            padding: "5px 14px", borderRadius: 9999,
-          }}>
-            What&apos;s running for you
-          </span>
-          <h2 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800,
-            fontSize: "clamp(34px, 4.2vw, 52px)", lineHeight: 1.05, letterSpacing: "-.025em",
-            color: "var(--rl-fg-1)",
-          }}>
-            Everything a small business needs —{" "}
-            <em style={{ fontStyle: "italic", color: "var(--rl-forest)" }}>handled.</em>
-          </h2>
-          <p style={{ fontSize: 18, color: "var(--rl-fg-2)", lineHeight: 1.65, maxWidth: 640 }}>
-            Not a list of services. A list of things you&apos;ll never have to worry about again.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="What&apos;s running for you"
+          heading={<>Everything a small business needs —{" "}<em>handled.</em></>}
+          description={<>Not a list of services. A list of things you&apos;ll never have to worry about again.</>}
+        />
 
         <div className="rl-grid-3">
           {SERVICES.map(({ icon: Icon, h, items }) => (
-            <div key={h} style={{
-              background: "var(--rl-surface)", border: "2px solid var(--rl-border-soft)",
+            <div key={h} className="sv-card" style={{
+              background: "var(--rl-surface)",
               borderRadius: 20, padding: 26,
               display: "flex", flexDirection: "column", gap: 14,
-              transition: "all var(--rl-dur-slow) var(--rl-ease-out)",
               position: "relative", overflow: "hidden",
-            }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = "var(--rl-gold)"
-                el.style.boxShadow = "var(--rl-shadow-lg)"
-                el.style.transform = "translateY(-3px)"
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = "var(--rl-border-soft)"
-                el.style.boxShadow = ""
-                el.style.transform = ""
-              }}
-            >
+            }}>
               <div style={{ width: 40, height: 40, borderRadius: 11, background: "var(--rl-forest-tint)", color: "var(--rl-forest)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <Icon size={20} />
               </div>

@@ -7,7 +7,8 @@ export async function GET() {
   try {
     const posts = await listBlogPosts()
     return NextResponse.json(posts)
-  } catch {
+  } catch (error) {
+    console.error("Blog API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
@@ -36,7 +37,8 @@ export async function POST(request: Request) {
 
     const post = await createBlogPost(body)
     return NextResponse.json(post, { status: 201 })
-  } catch {
+  } catch (error) {
+    console.error("Blog API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

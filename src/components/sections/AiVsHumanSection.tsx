@@ -1,4 +1,5 @@
 import { Bot, Heart, CheckCircle } from "lucide-react"
+import { SectionHeader } from "@/components/ui/SectionHeader"
 
 const AI_ITEMS = [
   "Drafts copy in your tone, ready to be edited",
@@ -23,29 +24,12 @@ export function AiVsHumanSection() {
     <section className="rl-section-pad" style={{ background: "var(--rl-bg)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center",
-            fontFamily: "var(--rl-font-body)", fontSize: 11, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: ".18em",
-            color: "var(--rl-fg-3)", background: "var(--rl-slate-100)",
-            padding: "5px 14px", borderRadius: 9999,
-          }}>
-            The honest split
-          </span>
-          <h2 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800,
-            fontSize: "clamp(34px, 4.2vw, 52px)", lineHeight: 1.05, letterSpacing: "-.025em",
-            color: "var(--rl-fg-1)",
-          }}>
-            AI does the repetitive bit.<br />
-            <em style={{ fontStyle: "italic", color: "var(--rl-forest)" }}>Humans do the bit that matters.</em>
-          </h2>
-          <p style={{ fontSize: 18, color: "var(--rl-fg-2)", lineHeight: 1.65, maxWidth: 640 }}>
-            We&apos;re not selling you &ldquo;AI&rdquo;. We&apos;re selling you a team that uses AI where it saves you money,
-            and uses experienced humans where it earns you trust. Here&apos;s where the line falls.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="The honest split"
+          heading={<>AI does the repetitive bit.<br /><em>Humans do the bit that matters.</em></>}
+          description={<>We&apos;re not selling you &ldquo;AI&rdquo;. We&apos;re selling you a team that uses AI where it saves you money, and uses experienced humans where it earns you trust. Here&apos;s where the line falls.</>}
+          eyebrowVariant="neutral"
+        />
 
         <div className="rl-grid-2">
 

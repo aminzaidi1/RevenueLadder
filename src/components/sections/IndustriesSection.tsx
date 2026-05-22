@@ -1,5 +1,6 @@
 import { Briefcase, ShoppingCart, Home, Heart, Coffee, Scale, Wrench, Sparkles, GraduationCap, Cloud, ArrowRight, Star } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { SectionHeader } from "@/components/ui/SectionHeader"
 
 interface Industry {
   Icon: LucideIcon
@@ -24,29 +25,11 @@ export function IndustriesSection() {
     <section className="rl-section-pad" style={{ background: "var(--rl-bg-warm)" }} id="industries">
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="rl-px">
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 760, margin: "0 auto 56px", textAlign: "center", alignItems: "center" }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center",
-            fontFamily: "var(--rl-font-body)", fontSize: 11, fontWeight: 800,
-            textTransform: "uppercase", letterSpacing: ".18em",
-            color: "var(--rl-forest)", background: "var(--rl-forest-tint)",
-            padding: "5px 14px", borderRadius: 9999,
-          }}>
-            Who we work with
-          </span>
-          <h2 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800,
-            fontSize: "clamp(34px, 4.2vw, 52px)", lineHeight: 1.05, letterSpacing: "-.025em",
-            color: "var(--rl-fg-1)",
-          }}>
-            Built for any small business that wants to grow<br />
-            without <em style={{ fontStyle: "italic", color: "var(--rl-forest)" }}>hiring a marketing team.</em>
-          </h2>
-          <p style={{ fontSize: 18, color: "var(--rl-fg-2)", lineHeight: 1.65, maxWidth: 640 }}>
-            We work across ten industries because the playbook overlaps more than the brochure-makers like to admit.
-            The website, the automations, the reporting — different copy, same engine.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Who we work with"
+          heading={<>Built for any small business that wants to grow<br />without <em>hiring a marketing team.</em></>}
+          description="We work across ten industries because the playbook overlaps more than the brochure-makers like to admit. The website, the automations, the reporting — different copy, same engine."
+        />
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginBottom: 36 }}>
           {INDUSTRIES.map(({ Icon, nm }) => (

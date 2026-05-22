@@ -124,8 +124,8 @@ export function ContactForm() {
       {status === "error" && (
         <div style={{
           display: "flex", alignItems: "flex-start", gap: 10, padding: "12px 16px",
-          background: "#fef2f2", border: "1.5px solid #fca5a5", borderRadius: "var(--rl-radius-md)",
-          color: "#b91c1c", fontSize: 14, lineHeight: 1.5,
+          background: "var(--rl-error-bg)", border: "1.5px solid var(--rl-error-border)", borderRadius: "var(--rl-radius-md)",
+          color: "var(--rl-error-ink)", fontSize: 14, lineHeight: 1.5,
         }}>
           <AlertCircle size={16} style={{ flexShrink: 0, marginTop: 2 }} />
           <span>{errorMsg}</span>

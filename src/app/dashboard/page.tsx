@@ -45,6 +45,9 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        <h2 style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap" }}>
+          Key metrics
+        </h2>
         <div className="stat-grid">
           {STATS.map(({ lbl, v, chg, up, icon: Icon, gold }) => (
             <div key={lbl} className="stat">

@@ -8,8 +8,9 @@ export default function PublicLayout({
 }) {
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
       <Footer />
     </>
   )

@@ -80,6 +80,42 @@
     background: var(--rl-gold);
     color: var(--rl-forest);
   }
+
+  :focus-visible {
+    outline: 2px solid var(--rl-forest);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .field input:focus-visible,
+  .field textarea:focus-visible,
+  .field select:focus-visible {
+    outline: none;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--rl-forest);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 0 0 4px 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-link:focus-visible {
+  clip: auto;
+  clip-path: none;
+  overflow: visible;
+  white-space: normal;
 }
 
 /* ── Shared layout utilities (used across marketing pages) ───────── */
@@ -738,6 +774,9 @@
   .sp-dive-row.reverse > div:first-child { order: 1; }
   .sp-dive-stats, .sp-proof-stats { grid-template-columns: 1fr 1fr; }
 }
+@media (max-width: 640px) {
+  .sp-hero { padding: 48px 20px 56px; }
+}
 @media (max-width: 600px) {
   .sp-caps { grid-template-columns: 1fr; }
   .sp-dive-stats, .sp-proof-stats { grid-template-columns: 1fr; }
@@ -1028,4 +1067,31 @@
   .t3-tl-row::before { left: -14px; }
   .t3-tl-row::after { display: none; }
   .t3-tl-row .week { position: static; transform: none; width: auto; text-align: left; margin-bottom: 6px; }
+}
+
+/* ── Footer hover states ─────────────────────────────────────────── */
+.footer-link {
+  color: rgba(255,255,255,.55);
+  transition: color var(--rl-dur-base);
+}
+.footer-link:hover { color: #fff; }
+
+.footer-social {
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.5);
+  transition: background var(--rl-dur-base), color var(--rl-dur-base);
+}
+.footer-social:hover { background: var(--rl-gold); color: var(--rl-forest); }
+
+/* ── Services card hover ─────────────────────────────────────────── */
+.sv-card {
+  border: 2px solid var(--rl-border-soft);
+  transition: border-color var(--rl-dur-slow) var(--rl-ease-out),
+              box-shadow var(--rl-dur-slow) var(--rl-ease-out),
+              transform var(--rl-dur-slow) var(--rl-ease-out);
+}
+.sv-card:hover {
+  border-color: var(--rl-gold);
+  box-shadow: var(--rl-shadow-lg);
+  transform: translateY(-3px);
 }

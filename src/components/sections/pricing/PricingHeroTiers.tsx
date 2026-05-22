@@ -3,125 +3,9 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Check, ArrowRight, Shield, Sparkles } from "lucide-react"
+import { TIERS, ADDONS, fmtPrice as fmt } from "@/lib/pricing-data"
 
 type Billing = "monthly" | "annual"
-
-const TIERS = [
-  {
-    id: "assist",
-    badge: "Assist",
-    featured: false,
-    name: "Assist",
-    monthly: 1800,
-    tagline: "For owner-operators who need consistent help but stay in the driving seat.",
-    team: {
-      label: "Your team",
-      heading: "1 senior lead + shared pool",
-      detail: "Half a day a week from the account lead, plus engineering + SEO time as needed.",
-      avs: ["RT", "EW"],
-      extraAv: false,
-    },
-    output: {
-      label: "AI output capacity",
-      heading: "Core",
-      detail: "Up to 8 social posts / mo · 1 blog post · standard email flows · 1 chatbot intent set",
-    },
-    humans: {
-      label: "Human hours",
-      figure: 16,
-      detail: "Per month · roll forward up to 8h · 3-day average turnaround",
-    },
-    vip: null as null | { label: string; lines: string[] },
-    platform: [
-      "Monitoring · office hours",
-      "Monthly written report",
-    ],
-    cta: { label: "Start with Assist", variant: "btn primary lg" },
-    guarantee: "30-day rolling · cancel any month",
-  },
-  {
-    id: "delegate",
-    badge: "Best fit · most popular",
-    featured: true,
-    name: "Delegate",
-    monthly: 3400,
-    tagline: "For founders who have stopped pretending they'll do the marketing themselves.",
-    team: {
-      label: "Your team",
-      heading: "1 lead + 4-person pod",
-      detail: "A senior strategist, engineer, SEO + content, and ops person on your account.",
-      avs: ["RT", "EW", "CJ", "AP"],
-      extraAv: true,
-    },
-    output: {
-      label: "AI output capacity",
-      heading: "Pro",
-      detail: "20 posts / mo · 4 blog posts · multi-step nurture flows · 1 voice or chat agent included",
-    },
-    humans: {
-      label: "Human hours",
-      figure: 40,
-      detail: "Per month · roll forward up to 16h · same-day turnaround on small jobs",
-    },
-    vip: {
-      label: "VIP onboarding",
-      lines: [
-        "Stack audit + 12-page written report",
-        "Quarterly strategy day, on-site or video",
-        "First-look on new RL services as launched",
-      ],
-    },
-    platform: [
-      "Monitoring · office hours",
-      "Monthly written report, pro",
-    ],
-    cta: { label: "Book a Delegate fit call", variant: "btn accent lg" },
-    guarantee: "30-day rolling · cancel any month",
-  },
-  {
-    id: "elevate",
-    badge: "Elevate",
-    featured: false,
-    name: "Elevate",
-    monthly: 5400,
-    tagline: "For businesses past £500k turnover who treat marketing and ops as a system.",
-    team: {
-      label: "Your team",
-      heading: "1 lead + dedicated 5-person pod",
-      detail: "Daily Slack presence, monthly strategy day, on-site quarterly visits.",
-      avs: ["RT", "EW", "CJ", "AP", "TB"],
-      extraAv: false,
-    },
-    output: {
-      label: "AI output capacity",
-      heading: "Unlimited",
-      detail: "Unlimited posts, blogs, flows · up to 3 voice or chat agents · custom AI agents on your data",
-    },
-    humans: {
-      label: "Human hours",
-      figure: 80,
-      detail: "Per month · roll forward up to 32h · 4h SLA on priority work",
-    },
-    vip: null as null | { label: string; lines: string[] },
-    platform: [
-      "Monitoring · 24/7 on-call",
-      "Monthly board-pack + annual roadmap",
-    ],
-    cta: { label: "Book an Elevate fit call", variant: "btn primary lg" },
-    guarantee: "30-day rolling · cancel any month",
-  },
-]
-
-const ADDONS = [
-  { name: "Voice agent build",            detail: "One-off -- 3-week setup, you own the agent",    price: "£1,200" },
-  { name: "Website rebuild",              detail: "Fixed-scope project, 4--6 weeks",               price: "from £6,800" },
-  { name: "Audit & strategy week",        detail: "5-day deep audit + written roadmap",            price: "£3,400" },
-  { name: "Custom AI agent on your data", detail: "Bespoke agent · usually paired with a tier",    price: "from £2,800" },
-]
-
-function fmt(n: number) {
-  return n.toLocaleString("en-GB")
-}
 
 export function PricingHeroTiers() {
   const [billing, setBilling] = useState<Billing>("monthly")
@@ -202,8 +86,8 @@ export function PricingHeroTiers() {
                   gap: 6,
                   fontSize: 12,
                   fontWeight: 700,
-                  color: tier.featured ? "#6ee7b7" : "var(--rl-success)",
-                  background: tier.featured ? "rgba(110,231,183,.10)" : "rgba(16,185,129,.08)",
+                  color: "var(--rl-success)",
+                  background: tier.featured ? "var(--rl-success-bg)" : "rgba(16,185,129,.08)",
                   border: `1px solid ${tier.featured ? "rgba(110,231,183,.20)" : "rgba(16,185,129,.15)"}`,
                   borderRadius: 999,
                   padding: "4px 10px",

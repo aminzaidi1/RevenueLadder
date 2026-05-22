@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server"
+import { fileTypeFromBuffer } from "file-type"
 import { createClient } from "@/lib/supabase/server"
+
+const ALLOWED_MIME = ["image/jpeg", "image/png", "image/webp", "image/gif"]
 
 export async function POST(request: Request) {
   try {
@@ -13,20 +16,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 })
     }
 
-    const allowed = ["image/jpeg", "image/png", "image/webp", "image/gif"]
-    if (!allowed.includes(file.type)) {
-      return NextResponse.json({ error: "File type not allowed" }, { status: 400 })
-    }
     if (file.size > 5 * 1024 * 1024) {
       return NextResponse.json({ error: "File too large (max 5 MB)" }, { status: 400 })
     }
 
-    const ext = file.name.split(".").pop() ?? "jpg"
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+    const buffer = await file.arrayBuffer()
+    const detected = await fileTypeFromBuffer(buffer)
+    if (!detected || !ALLOWED_MIME.includes(detected.mime)) {
+      return NextResponse.json({ error: "File type not allowed" }, { status: 400 })
+    }
+
+    const filename = `${crypto.randomUUID()}.${detected.ext}`
 
     const { error: uploadError } = await supabase.storage
       .from("blog-images")
-      .upload(filename, file, { contentType: file.type, upsert: false })
+      .upload(filename, file, { contentType: detected.mime, upsert: false })
 
     if (uploadError) throw new Error(uploadError.message)
 
@@ -35,7 +39,8 @@ export async function POST(request: Request) {
       .getPublicUrl(filename)
 
     return NextResponse.json({ url: publicUrl }, { status: 201 })
-  } catch {
+  } catch (error) {
+    console.error("Upload API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
