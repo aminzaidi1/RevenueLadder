@@ -3,6 +3,22 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-05-22
+
+### Changed
+- Commented out "How it works" nav link (desktop and mobile) until the section is built
+- Footer links wired to real routes — replaced all placeholder `href="#"` anchors with typed `<Link>` components; removed entries with no corresponding pages ("Meet the team", "Customer stories")
+- Removed `TeamSection` from homepage render order
+
+### Fixed
+- Contact page: `padding` shorthand on the section element was overriding `rl-px` horizontal padding (setting left/right to 0); split into responsive Tailwind vertical-padding classes
+- Contact page: form card, dark sidebar card, and contact details card now use responsive padding (`p-6 sm:p-8 lg:p-10` etc.) instead of fixed inline values
+- Contact page: added 768px two-column breakpoint to `.rl-contact-grid` (equal cols at tablet, `1fr 420px` at desktop)
+- Contact form: submit button class corrected from non-existent `rl-btn rl-btn-primary` to `btn primary`
+- Pricing matrix ("Detail · every feature"): wrapped in `pr-matrix-outer` scroll container; added `min-width: 480px` and fixed column widths at <= 600px so columns stay symmetrical on mobile instead of collapsing
+
+---
+
 ## [Unreleased] - 2026-05-21
 
 ### Added

@@ -17,10 +17,10 @@ const STEPS = [
 export default function ContactPage() {
   return (
     <main style={{ background: "var(--rl-bg)", minHeight: "100vh" }}>
-      <section className="rl-px" style={{ maxWidth: 1240, margin: "0 auto", padding: "80px 0 96px" }}>
+      <section className="rl-px pt-14 pb-16 md:pt-20 md:pb-24" style={{ maxWidth: 1240, margin: "0 auto" }}>
 
         {/* Page header */}
-        <div style={{ marginBottom: 56 }}>
+        <div className="mb-8 md:mb-14">
           <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--rl-forest)", marginBottom: 12 }}>
             Contact
           </p>
@@ -36,7 +36,7 @@ export default function ContactPage() {
         <div className="rl-contact-grid">
 
           {/* Left: form card */}
-          <div style={{ background: "var(--rl-surface)", borderRadius: "var(--rl-radius-lg)", padding: "40px", boxShadow: "0 2px 16px rgba(0,0,0,.06)" }}>
+          <div className="p-6 sm:p-8 lg:p-10" style={{ background: "var(--rl-surface)", borderRadius: "var(--rl-radius-lg)", boxShadow: "0 2px 16px rgba(0,0,0,.06)" }}>
             <h2 style={{ fontFamily: "var(--rl-font-display)", fontSize: 22, fontWeight: 800, color: "var(--rl-fg-1)", marginBottom: 28, letterSpacing: "-.01em" }}>
               Send an enquiry
             </h2>
@@ -47,7 +47,7 @@ export default function ContactPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
 
             {/* What happens next card */}
-            <div style={{ background: "var(--rl-forest-ink)", borderRadius: "var(--rl-radius-lg)", padding: "36px 32px" }}>
+            <div className="p-6 sm:p-8 lg:p-9" style={{ background: "var(--rl-forest-ink)", borderRadius: "var(--rl-radius-lg)" }}>
               <h2 style={{ fontFamily: "var(--rl-font-display)", fontSize: 18, fontWeight: 800, color: "#fff", marginBottom: 28, letterSpacing: "-.01em" }}>
                 What happens next
               </h2>
@@ -71,7 +71,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact details card */}
-            <div style={{ background: "var(--rl-surface)", borderRadius: "var(--rl-radius-lg)", padding: "28px 32px", boxShadow: "0 2px 16px rgba(0,0,0,.06)" }}>
+            <div className="p-5 sm:p-6 lg:p-7" style={{ background: "var(--rl-surface)", borderRadius: "var(--rl-radius-lg)", boxShadow: "0 2px 16px rgba(0,0,0,.06)" }}>
               <h3 style={{ fontFamily: "var(--rl-font-display)", fontSize: 14, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".12em", color: "var(--rl-fg-3)", marginBottom: 20 }}>
                 Find us
               </h3>
