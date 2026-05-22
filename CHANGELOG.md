@@ -5,6 +5,22 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased] - 2026-05-22
 
+### Added
+- Shared `BlogCard` component (`src/components/blog/BlogCard.tsx`) used by homepage teaser and blog post related-grid
+- Shared `SectionHeader` component (`src/components/ui/SectionHeader.tsx`) replacing copy-pasted eyebrow/heading/description markup in six section components
+- Centralised pricing tier data in `src/lib/pricing-data.ts`; pricing hero, compare, and matrix sections now import from a single source
+
+### Changed
+- Replaced JS `onMouseEnter`/`onMouseLeave` hover handlers in `Footer` and `ServicesSection` with CSS `:hover` rules
+- Replaced hardcoded hex colours with semantic design tokens: error banner uses `--rl-error-*`, success indicators use `--rl-success`/`--rl-success-bg`, dark-surface text uses `--rl-fg-on-dark-2`
+- Added `aria-hidden="true"` to decorative `ArrowRight` icons in the nav mega-menu
+- Removed unused stub sections: `ProcessSection`, `ResultsSection`, `TeamSection`
+- Deleted superseded `src/styles/pricing.css`
+
+---
+
+## [Unreleased] - 2026-05-22
+
 ### Changed
 - Commented out "How it works" nav link (desktop and mobile) until the section is built
 - Footer links wired to real routes — replaced all placeholder `href="#"` anchors with typed `<Link>` components; removed entries with no corresponding pages ("Meet the team", "Customer stories")
