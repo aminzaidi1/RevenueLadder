@@ -280,6 +280,8 @@
 .btn.accent:hover  { background: var(--rl-gold-dark); box-shadow: var(--rl-shadow-gold); transform: translateY(-1px); }
 .btn.outline { background: transparent; color: var(--rl-forest); border: 2px solid rgba(26,77,46,.28); }
 .btn.outline:hover { border-color: var(--rl-forest); background: rgba(26,77,46,.04); }
+.btn.outline.on-dark { color: #fff; border-color: rgba(255,255,255,.28); }
+.btn.outline.on-dark:hover { border-color: rgba(255,255,255,.65); background: rgba(255,255,255,.08); }
 
 /* =====================================================================
    Pricing page styles
@@ -680,8 +682,11 @@
    ===================================================================== */
 .t1-page { background: radial-gradient(circle at 12% -10%, rgba(255,196,37,.045) 0%, transparent 38%), radial-gradient(circle at 90% 8%, rgba(26,77,46,.04) 0%, transparent 32%), var(--rl-bg); }
 .t1-hero { background: radial-gradient(circle at 78% 18%, rgba(255,196,37,.18) 0%, transparent 50%), radial-gradient(circle at 8% 86%, rgba(26,77,46,.55) 0%, transparent 50%), linear-gradient(180deg, #0F2E1C 0%, #08120B 100%); color: #fff; border: 1px solid rgba(255,196,37,.10); box-shadow: 0 30px 80px rgba(0,0,0,.30); }
+.t1-hero::before { content: ''; position: absolute; inset: 0; background-image: var(--rl-pattern-dots-dark); background-size: 24px 24px; pointer-events: none; }
+.t1-hero::after { content: ''; position: absolute; inset: 0; background: var(--rl-pattern-ladder); opacity: .15; -webkit-mask: linear-gradient(to bottom-left, #000 0%, transparent 70%); mask: linear-gradient(to bottom-left, #000 0%, transparent 70%); pointer-events: none; }
 
 .t1-call { background: linear-gradient(180deg, rgba(13,26,16,.96) 0%, rgba(8,18,11,.96) 100%); border: 1px solid rgba(255,196,37,.18); border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.50), inset 0 1px 0 rgba(255,255,255,.06); position: relative; }
+.t1-call::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 80% 10%, rgba(255,196,37,.10) 0%, transparent 50%); }
 .t1-call-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(255,196,37,.10); background: rgba(0,0,0,.30); }
 .t1-call-head .dots { display: flex; gap: 6px; }
 .t1-call-head .dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.20); }

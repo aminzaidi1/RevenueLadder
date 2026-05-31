@@ -65,24 +65,14 @@ Full token list lives in colors_and_type.css — import it, do not copy-paste va
 - Unauthenticated users hitting /dashboard are redirected to /
 - No separate deployment — everything is on revenueladder.co.uk
 
-## Current Task
-Importing the Claude Design handoff bundle into the Next.js project.
-Build page by page — homepage first.
-
-Build order:
-1. src/app/globals.css — import colors_and_type.css tokens, Tailwind v4 directives
-2. src/app/layout.tsx — root layout, Montserrat + Inter via Google Fonts, metadata
-3. src/components/layout/Nav.tsx — public nav with Login button
-4. src/components/layout/Footer.tsx
-5. src/app/(public)/layout.tsx — wraps Nav and Footer
-6. src/app/(public)/page.tsx — homepage sections
-
-Reference files from the handoff bundle:
-- project/site/Nav.jsx — nav implementation reference
-- project/site/Hero.jsx — hero section reference
-- project/site/Footer.jsx — footer reference
-- project/ui_kits/website/ — full website UI kit
-- project/ui_kits/app/ — dashboard UI kit
+## Outreach OS
+Internal cold outreach journaling and tracking feature for the dashboard.
+- Rules: `.claude/rules/outreach.md`
+- Schema (manual run, not a migration): `db/outreach_schema.sql`
+- DB access layer: `src/lib/supabase/outreach.ts`
+- Routes: `/dashboard/outreach`, `/dashboard/outreach/{calls,emails,journal,reports,knowledge}`
+- API: `src/app/api/outreach/{calls,emails,journal,knowledge}/...`
+- No AI in the UI — Claude Code runs locally and writes reports to the `outreach_reports` table via the service role key. Read those from `/dashboard/outreach/reports`.
 
 ## Tooling
 - GitHub CLI is installed at `C:\Program Files\GitHub CLI\gh.exe` -- it is NOT in PATH
