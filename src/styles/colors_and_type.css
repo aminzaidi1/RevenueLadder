@@ -1,0 +1,241 @@
+/* =====================================================================
+   RevenueLadder Design System — Foundations
+   colors_and_type.css
+   Welsh Web & Automation Agency · Bangor, Wales
+   ===================================================================== */
+
+
+:root {
+  /* ── BRAND CORE ─────────────────────────────────────────────────── */
+  --rl-forest:        #1A4D2E;   /* Forest Growth Green   — primary       */
+  --rl-forest-dark:   #143D24;   /* primary hover / pressed                */
+  --rl-forest-deep:   #0F2E1C;   /* dark surface base                      */
+  --rl-forest-ink:    #0D1A10;   /* sidebar / hero ink black-green         */
+  --rl-forest-tint:   rgba(26, 77, 46, .08);  /* fill on light             */
+  --rl-forest-tint-2: rgba(26, 77, 46, .14);
+
+  --rl-gold:          #FFC425;   /* Accelerated Gold — accent              */
+  --rl-gold-dark:     #E6B020;   /* accent hover                           */
+  --rl-gold-deep:     #B07F00;   /* high-contrast gold text                */
+  --rl-gold-tint:     rgba(255, 196, 37, .12);
+  --rl-gold-tint-2:   rgba(255, 196, 37, .22);
+
+  --rl-charcoal:      #1A1A1A;   /* Midnight Charcoal — secondary          */
+
+  /* ── NEUTRALS (Slate ramp) ──────────────────────────────────────── */
+  --rl-bg:            #EDEAE5;   /* warm off-white application background  */
+  --rl-bg-warm:       #F4F1EB;   /* alt warm surface                       */
+  --rl-surface:       #FFFFFF;   /* card / panel                           */
+  --rl-slate-50:      #F8FAFC;
+  --rl-slate-100:     #F1F5F9;
+  --rl-slate-200:     #E2E8F0;
+  --rl-slate-300:     #CBD5E1;
+  --rl-slate-400:     #6B7280;
+  --rl-slate-500:     #64748B;
+  --rl-slate-600:     #475569;
+  --rl-slate-700:     #334155;
+  --rl-slate-800:     #1E293B;
+  --rl-slate-900:     #0F172A;
+
+  /* ── SEMANTIC ───────────────────────────────────────────────────── */
+  --rl-success:       #10B981;
+  --rl-success-bg:    #F0FDF4;
+  --rl-success-border:#BBF7D0;
+  --rl-success-ink:   #14532D;
+
+  --rl-error:         #EF4444;
+  --rl-error-bg:      #FEF2F2;
+  --rl-error-border:  #FECACA;
+  --rl-error-ink:     #7F1D1D;
+
+  --rl-warning:       #F59E0B;
+  --rl-warning-bg:    #FFFBEB;
+  --rl-warning-border:#FDE68A;
+  --rl-warning-ink:   #78350F;
+
+  --rl-info:          #3B82F6;
+  --rl-info-bg:       #EFF6FF;
+  --rl-info-border:   #BFDBFE;
+  --rl-info-ink:      #1E3A8A;
+
+  /* ── SEMANTIC TEXT / SURFACES ───────────────────────────────────── */
+  --rl-fg-1:          var(--rl-slate-900);  /* primary text                */
+  --rl-fg-2:          var(--rl-slate-600);  /* secondary text              */
+  --rl-fg-3:          var(--rl-slate-400);  /* muted / caption             */
+  --rl-fg-on-dark:    #FFFFFF;
+  --rl-fg-on-dark-2:  rgba(255, 255, 255, .55);
+  --rl-fg-on-dark-3:  rgba(255, 255, 255, .25);
+
+  --rl-border:        var(--rl-slate-200);
+  --rl-border-soft:   var(--rl-slate-100);
+  --rl-border-strong: var(--rl-slate-300);
+  --rl-border-dark:   #1C2E1E;
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────────────── */
+  --rl-font-display:  var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  --rl-font-body:     var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rl-font-mono:     var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale — 1.250 major-third × 8px aware  */
+  --rl-fs-hero:       72px;   /* Montserrat Black/900 — landing hero      */
+  --rl-fs-display:    56px;   /* Montserrat Black/900                     */
+  --rl-fs-h1:         40px;   /* Montserrat ExtraBold/800                 */
+  --rl-fs-h2:         32px;   /* Montserrat ExtraBold/800                 */
+  --rl-fs-h3:         24px;   /* Montserrat Bold/700                      */
+  --rl-fs-h4:         18px;   /* Montserrat Bold/700                      */
+  --rl-fs-body-lg:    17px;   /* Inter 400/500                            */
+  --rl-fs-body:       15px;   /* Inter 400/500                            */
+  --rl-fs-body-sm:    13px;
+  --rl-fs-caption:    12px;
+  --rl-fs-overline:   11px;   /* Inter 700 uppercase, .15em tracking      */
+  --rl-fs-micro:      10px;
+
+  --rl-lh-tight:      1.05;
+  --rl-lh-snug:       1.2;
+  --rl-lh-normal:     1.5;
+  --rl-lh-relaxed:    1.7;
+
+  --rl-tracking-tight:  -0.025em;
+  --rl-tracking-normal: 0;
+  --rl-tracking-loose:  0.08em;
+  --rl-tracking-eyebrow:0.18em;
+
+  /* ── SPACING (8px grid) ─────────────────────────────────────────── */
+  --rl-space-1:  4px;
+  --rl-space-2:  8px;
+  --rl-space-3:  12px;
+  --rl-space-4:  16px;
+  --rl-space-5:  20px;
+  --rl-space-6:  24px;
+  --rl-space-8:  32px;
+  --rl-space-10: 40px;
+  --rl-space-12: 48px;
+  --rl-space-16: 64px;
+  --rl-space-20: 80px;
+  --rl-space-24: 96px;
+
+  /* ── RADII ──────────────────────────────────────────────────────── */
+  --rl-radius-xs:  4px;
+  --rl-radius-sm:  8px;
+  --rl-radius-md:  12px;
+  --rl-radius-lg:  16px;
+  --rl-radius-xl:  20px;
+  --rl-radius-2xl: 28px;
+  --rl-radius-pill: 9999px;
+
+  /* ── SHADOWS / ELEVATION ────────────────────────────────────────── */
+  --rl-shadow-sm:   0 1px 2px rgba(15, 23, 42, .06);
+  --rl-shadow-md:   0 4px 16px rgba(15, 23, 42, .07);
+  --rl-shadow-lg:   0 12px 32px rgba(15, 23, 42, .10);
+  --rl-shadow-xl:   0 20px 48px rgba(15, 23, 42, .14);
+  --rl-shadow-pop:  0 8px 28px rgba(26, 77, 46, .18);     /* green-tinted hover */
+  --rl-shadow-gold: 0 8px 28px rgba(255, 196, 37, .35);   /* gold-tinted hover  */
+  --rl-shadow-inset:inset 0 1px 0 rgba(255, 255, 255, .9);
+  --rl-shadow-ring: 0 0 0 4px rgba(255, 196, 37, .35);    /* focus ring         */
+
+  /* ── MOTION ─────────────────────────────────────────────────────── */
+  --rl-ease-out:     cubic-bezier(.16, 1, .3, 1);
+  --rl-ease-spring:  cubic-bezier(.34, 1.56, .64, 1);
+  --rl-ease-smooth:  cubic-bezier(.4, 0, .2, 1);
+  --rl-dur-fast:     120ms;
+  --rl-dur-base:     200ms;
+  --rl-dur-slow:     360ms;
+
+  /* ── GRADIENTS & TEXTURES ───────────────────────────────────────── */
+  --rl-grad-forest:    linear-gradient(135deg, #1A4D2E 0%, #0F2E1C 100%);
+  --rl-grad-gold:      linear-gradient(135deg, #FFC425 0%, #E6B020 100%);
+  --rl-grad-hero:      radial-gradient(circle at 68% 38%, rgba(255,196,37,.10) 0%, transparent 52%),
+                       radial-gradient(circle at 14% 78%, rgba(26,77,46,.55)  0%, transparent 48%),
+                       linear-gradient(180deg, #0F2E1C 0%, #0D1A10 100%);
+  --rl-pattern-dots:   radial-gradient(circle, rgba(26,77,46,.05) 1px, transparent 1px);
+  --rl-pattern-dots-dark: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+  /* Diagonal "ladder" stripes — brand signature pattern */
+  --rl-pattern-ladder: repeating-linear-gradient(
+    -45deg,
+    rgba(255,196,37,.0) 0 14px,
+    rgba(255,196,37,.18) 14px 18px,
+    rgba(255,196,37,.0) 18px 32px
+  );
+}
+
+/* =====================================================================
+   SEMANTIC TYPE PRIMITIVES
+   Use these classes (or the corresponding tags) for default typography.
+   ===================================================================== */
+
+.rl-hero,
+.rl-display {
+  font-family: var(--rl-font-display);
+  font-weight: 900;
+  letter-spacing: var(--rl-tracking-tight);
+  line-height: var(--rl-lh-tight);
+  color: var(--rl-fg-1);
+}
+.rl-hero      { font-size: var(--rl-fs-hero); }
+.rl-display   { font-size: var(--rl-fs-display); }
+
+.rl-h1, .rl-h2, .rl-h3, .rl-h4 {
+  font-family: var(--rl-font-display);
+  letter-spacing: var(--rl-tracking-tight);
+  line-height: var(--rl-lh-snug);
+  color: var(--rl-fg-1);
+}
+.rl-h1 { font-size: var(--rl-fs-h1); font-weight: 800; }
+.rl-h2 { font-size: var(--rl-fs-h2); font-weight: 800; }
+.rl-h3 { font-size: var(--rl-fs-h3); font-weight: 700; letter-spacing: -0.015em; }
+.rl-h4 { font-size: var(--rl-fs-h4); font-weight: 700; letter-spacing: -0.01em; }
+
+.rl-body-lg,
+.rl-body,
+.rl-body-sm {
+  font-family: var(--rl-font-body);
+  color: var(--rl-fg-2);
+  line-height: var(--rl-lh-relaxed);
+  font-weight: 400;
+}
+.rl-body-lg { font-size: var(--rl-fs-body-lg); }
+.rl-body    { font-size: var(--rl-fs-body); }
+.rl-body-sm { font-size: var(--rl-fs-body-sm); line-height: var(--rl-lh-normal); }
+
+.rl-caption {
+  font-family: var(--rl-font-body);
+  font-size: var(--rl-fs-caption);
+  color: var(--rl-fg-3);
+  line-height: var(--rl-lh-normal);
+}
+
+.rl-overline,
+.rl-eyebrow {
+  font-family: var(--rl-font-body);
+  font-size: var(--rl-fs-overline);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--rl-tracking-eyebrow);
+  color: var(--rl-fg-3);
+}
+.rl-eyebrow.is-gold {
+  color: var(--rl-gold-deep);
+  background: var(--rl-gold-tint);
+  border-radius: var(--rl-radius-pill);
+  padding: 4px 12px;
+  display: inline-block;
+}
+.rl-eyebrow.is-forest {
+  color: var(--rl-forest);
+  background: var(--rl-forest-tint);
+  border-radius: var(--rl-radius-pill);
+  padding: 4px 12px;
+  display: inline-block;
+}
+
+.rl-code, .rl-kbd {
+  font-family: var(--rl-font-mono);
+  font-size: var(--rl-fs-body-sm);
+  color: var(--rl-forest);
+  background: var(--rl-forest-tint);
+  padding: 2px 8px;
+  border-radius: var(--rl-radius-xs);
+}
+
+/* Selection styling */
+::selection { background: var(--rl-gold); color: var(--rl-forest); }

@@ -1,0 +1,78 @@
+# Changelog
+
+All notable changes to this project will be documented here.
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [Unreleased] - 2026-05-22
+
+### Added
+- Shared `BlogCard` component (`src/components/blog/BlogCard.tsx`) used by homepage teaser and blog post related-grid
+- Shared `SectionHeader` component (`src/components/ui/SectionHeader.tsx`) replacing copy-pasted eyebrow/heading/description markup in six section components
+- Centralised pricing tier data in `src/lib/pricing-data.ts`; pricing hero, compare, and matrix sections now import from a single source
+
+### Changed
+- Replaced JS `onMouseEnter`/`onMouseLeave` hover handlers in `Footer` and `ServicesSection` with CSS `:hover` rules
+- Replaced hardcoded hex colours with semantic design tokens: error banner uses `--rl-error-*`, success indicators use `--rl-success`/`--rl-success-bg`, dark-surface text uses `--rl-fg-on-dark-2`
+- Added `aria-hidden="true"` to decorative `ArrowRight` icons in the nav mega-menu
+- Removed unused stub sections: `ProcessSection`, `ResultsSection`, `TeamSection`
+- Deleted superseded `src/styles/pricing.css`
+
+---
+
+## [Unreleased] - 2026-05-22
+
+### Changed
+- Commented out "How it works" nav link (desktop and mobile) until the section is built
+- Footer links wired to real routes — replaced all placeholder `href="#"` anchors with typed `<Link>` components; removed entries with no corresponding pages ("Meet the team", "Customer stories")
+- Removed `TeamSection` from homepage render order
+
+### Fixed
+- Contact page: `padding` shorthand on the section element was overriding `rl-px` horizontal padding (setting left/right to 0); split into responsive Tailwind vertical-padding classes
+- Contact page: form card, dark sidebar card, and contact details card now use responsive padding (`p-6 sm:p-8 lg:p-10` etc.) instead of fixed inline values
+- Contact page: added 768px two-column breakpoint to `.rl-contact-grid` (equal cols at tablet, `1fr 420px` at desktop)
+- Contact form: submit button class corrected from non-existent `rl-btn rl-btn-primary` to `btn primary`
+- Pricing matrix ("Detail · every feature"): wrapped in `pr-matrix-outer` scroll container; added `min-width: 480px` and fixed column widths at <= 600px so columns stay symmetrical on mobile instead of collapsing
+
+---
+
+## [Unreleased] - 2026-05-21
+
+### Added
+- Blog CMS backed by Supabase: create, edit, and delete posts from `/dashboard/blog`
+- Tiptap WYSIWYG editor with bold, italic, headings, lists, blockquote, inline code, links, and dividers
+- Image upload to Supabase Storage (`blog-images` bucket) or insert by URL, dropped inline at cursor position
+- CTA block node: branded banner (dark forest or gold) with editable heading, body, button label, and URL
+- Callout card node: highlight box with emoji icon and three tone options (neutral, forest, gold)
+- API routes: `GET/POST /api/blog`, `GET/PUT/DELETE /api/blog/[slug]`, `POST /api/upload`
+- Dashboard pages: blog list (live from Supabase), `/dashboard/blog/new`, `/dashboard/blog/[slug]` edit with delete
+- `src/lib/supabase/blog.ts` typed access layer with `listBlogPosts`, `getBlogPost`, `createBlogPost`, `updateBlogPost`, `deleteBlogPost`
+- Seeded 12 original blog posts into Supabase with correct author, category, read time, and publication dates
+
+---
+
+## [Unreleased] - 2026-05-21
+
+### Added
+- Vercel Analytics via `@vercel/analytics/next` (page view and event tracking)
+- Contact page and form with email delivery via Resend API
+- Self-hosted Montserrat and Inter fonts via `next/font` (eliminates Google Fonts network requests)
+- Full mobile-first responsive layout across all homepage sections using CSS utility classes (`rl-px`, `rl-section-pad`, `rl-hero-grid`, `rl-grid-2/3/4/6`, `rl-footer-grid`, `rl-footer-bottom`)
+- Services accordion in mobile hamburger menu with scrollable content panel
+- Mobile menu scrollable container (`max-height: calc(100svh - 100px)`)
+- Complete public site: homepage, blog, pricing, services (14 pages), and all section components
+- Dashboard layout with blog management UI
+- Supabase auth flow (`/login` -> `/dashboard`)
+- OpenGraph image, sitemap, and robots.txt
+- CI workflow on Node.js 24
+- PR template and contributing guide
+
+### Changed
+- Nav: Sign in and Book a call buttons hidden below `lg` breakpoint; accessible via hamburger menu only on mobile
+- Nav: mobile CTA buttons stack vertically (Book a call primary, Sign in secondary)
+- Footer: 2-column grid on mobile with brand column spanning full width; 5-column on desktop
+- Lint script scoped to `src/` to exclude design reference files
+- Removed staging branch; simplified deploy flow to dev -> main
+
+### Fixed
+- Contact API route: request body validated with type guard before use; rate-limiting and CSRF protections added
+- Sign-out route hardened against unhandled rejections
