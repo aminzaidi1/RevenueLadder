@@ -2,7 +2,10 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutGrid, FileText, Inbox, LogOut } from "lucide-react"
+import {
+  LayoutGrid, FileText, Inbox, LogOut,
+  PhoneCall, Mail, NotebookPen, ClipboardList, BookOpen, Compass,
+} from "lucide-react"
 
 const NAV = [
   {
@@ -11,6 +14,17 @@ const NAV = [
       { href: "/dashboard",          label: "Overview", icon: LayoutGrid },
       { href: "/dashboard/blog",     label: "Blog",     icon: FileText,  pip: true },
       { href: "/dashboard/contacts", label: "Contacts", icon: Inbox },
+    ],
+  },
+  {
+    group: "Outreach OS",
+    links: [
+      { href: "/dashboard/outreach",           label: "Overview",       icon: Compass },
+      { href: "/dashboard/outreach/calls",     label: "Calls",          icon: PhoneCall },
+      { href: "/dashboard/outreach/emails",    label: "Emails",         icon: Mail },
+      { href: "/dashboard/outreach/journal",   label: "Journal",        icon: NotebookPen },
+      { href: "/dashboard/outreach/reports",   label: "Reports",        icon: ClipboardList },
+      { href: "/dashboard/outreach/knowledge", label: "Knowledge base", icon: BookOpen },
     ],
   },
 ]

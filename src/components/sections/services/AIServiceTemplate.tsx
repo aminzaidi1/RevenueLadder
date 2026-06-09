@@ -95,7 +95,7 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
             <div>
               <div className="sp-eyebrow-stack">
                 <span className="sp-crumb">
-                  <Bot size={11} strokeWidth={2.5} />
+                  <Ic name={spec.ic} size={11} strokeWidth={2.5} />
                   AI &amp; Automation
                   <span className="sp-crumb-sep">/</span>
                   {spec.service}
@@ -108,7 +108,7 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
                   Book a call <ArrowRight size={16} />
                 </Link>
                 {spec.secondaryCta && (
-                  <Link href="/contact" className="btn ghost-light lg">
+                  <Link href="/contact" className="btn outline on-dark lg">
                     <Play size={14} /> {spec.secondaryCta}
                   </Link>
                 )}
@@ -122,7 +122,7 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
                 </div>
               )}
             </div>
-            <div>{spec.heroVisual}</div>
+            {spec.heroVisual}
           </div>
         </div>
       </section>
