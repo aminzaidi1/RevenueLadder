@@ -100,7 +100,7 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
   const [filter, setFilter] = useState("all")
   const [page, setPage] = useState(1)
 
-  const featured = posts.find(p => p.featured) ?? posts[0]
+  const featured = posts.find(p => p.featured) ?? posts[0] ?? null
   const rest = posts.filter(p => p !== featured)
   const filtered = filter === "all" ? rest : rest.filter(p => p.catId === filter)
   const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE)
@@ -173,7 +173,7 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
       </section>
 
       {/* Featured post */}
-      {filter === "all" && (
+      {filter === "all" && featured && (
         <section style={{ background: "var(--rl-bg)" }}>
           <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px 40px" }}>
             <Link href={`/blog/${featured.slug}`} style={{ textDecoration: "none" }}>
