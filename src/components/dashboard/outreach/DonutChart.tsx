@@ -29,19 +29,26 @@ export function DonutChart({ data, size = 160, centerTop, centerBottom }: DonutC
     )
   }
 
-  let offset = 0
+  const slices = data.map((s, i) => {
+    const frac = s.value / total
+    const arc = frac * c
+    return { ...s, arc, index: i }
+  })
+  const offsets = slices.reduce<number[]>((acc, s) => {
+    acc.push(acc.length === 0 ? 0 : acc[acc.length - 1] + slices[acc.length - 1].arc)
+    return acc
+  }, [])
+
   return (
     <div className="ox-chart-donut-wrap" style={{ width: size }}>
       <svg viewBox="0 0 100 100" width={size} height={size}>
         <circle cx={cx} cy={cy} r={r} fill="none" stroke="var(--rl-border-soft)" strokeWidth={14} />
-        {data.map((s, i) => {
+        {slices.map((s, i) => {
           if (s.value === 0) return null
-          const frac = s.value / total
-          const arc = frac * c
-          const dash = `${arc} ${c - arc}`
-          const node = (
+          const dash = `${s.arc} ${c - s.arc}`
+          return (
             <circle
-              key={i}
+              key={s.index}
               cx={cx}
               cy={cy}
               r={r}
@@ -49,14 +56,12 @@ export function DonutChart({ data, size = 160, centerTop, centerBottom }: DonutC
               stroke={s.color}
               strokeWidth={14}
               strokeDasharray={dash}
-              strokeDashoffset={-offset}
+              strokeDashoffset={-offsets[i]}
               transform={`rotate(-90 ${cx} ${cy})`}
             >
               <title>{`${s.label}: ${s.value}`}</title>
             </circle>
           )
-          offset += arc
-          return node
         })}
         {(centerTop || centerBottom) && (
           <>
