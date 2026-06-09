@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Clock, Check, ArrowRight, Mail, Zap } from "lucide-react"
-import DOMPurify from "isomorphic-dompurify"
 import { getBlogPost, listBlogPosts } from "@/lib/supabase/blog"
 import { mapDbPost, type BlogCategory } from "@/lib/blog-data"
 import { BlogCard } from "@/components/blog/BlogCard"
@@ -85,7 +84,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             <div
               className="bl-article"
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dbPost.content) }}
+              dangerouslySetInnerHTML={{ __html: dbPost.content }}
             />
 
             <div className="bl-author-bio">
