@@ -13,9 +13,9 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getBlogPost(slug)
-  if (!post) return { title: "Post not found | RevenueLadder" }
+  if (!post) return { title: "Post not found | Revenue Ladder" }
   return {
-    title: post.meta_title ?? `${post.title} | RevenueLadder`,
+    title: post.meta_title ?? `${post.title} | Revenue Ladder`,
     description: post.meta_description ?? post.excerpt ?? undefined,
     alternates: { canonical: `/blog/${slug}` },
   }
@@ -44,8 +44,32 @@ export default async function BlogPostPage({ params }: Props) {
     id, label, count,
   }))
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+      jobTitle: post.author.role,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Revenue Ladder",
+      url: "https://revenueladder.co.uk",
+    },
+    dateModified: dbPost.updated_at,
+    url: `https://revenueladder.co.uk/blog/${slug}`,
+    ...(dbPost.cover_image_url ? { image: dbPost.cover_image_url } : {}),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
       <section className="container">
         <div className="bl-post-wrap">
           <article className="bl-post">

@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Automated Social Media | RevenueLadder",
+  title: "Automated Social Media | Revenue Ladder",
   description: "Social media content planned, written, and scheduled automatically -- with a human approving every post. Built for Welsh and UK SMEs.",
 }
 
@@ -182,5 +183,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function AutomatedSocialMediaPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Works with your existing stack" />
+    </>
+  )
 }

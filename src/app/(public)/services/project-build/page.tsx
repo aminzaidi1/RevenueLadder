@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { EngagementTemplate, type EngServiceSpec } from "@/components/sections/services/EngagementTemplate"
 
 export const metadata: Metadata = {
-  title: "Project Build | RevenueLadder",
+  title: "Project Build | Revenue Ladder",
   description: "A fixed-scope, fixed-price build shipped on the day we said. No scope creep. No surprises. Hand-built from Bangor.",
 }
 

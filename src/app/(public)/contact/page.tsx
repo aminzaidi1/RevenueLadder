@@ -3,8 +3,10 @@ import { ContactForm } from "@/components/forms/ContactForm"
 import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Contact — RevenueLadder",
-  description: "Get in touch with RevenueLadder. Tell us about your project and we will respond within one working day.",
+  title: "Contact Revenue Ladder | Welsh web agency, Bangor",
+  description:
+    "Get in touch with Revenue Ladder. Tell us about your project and we will respond within one working day.",
+  alternates: { canonical: "/contact" },
 }
 
 const STEPS = [

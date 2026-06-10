@@ -168,6 +168,19 @@
 .rl-grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 @media (min-width: 640px) { .rl-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
 
+/* Auto-scrolling ticker */
+.ticker-track {
+  display: flex;
+  gap: 36px;
+  width: max-content;
+  animation: ticker-scroll 22s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* 6-column grid (2 cols mobile, 3 tablet, 6 desktop) */
 .rl-grid-6 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 @media (min-width: 640px) { .rl-grid-6 { grid-template-columns: repeat(3, 1fr); gap: 14px; } }

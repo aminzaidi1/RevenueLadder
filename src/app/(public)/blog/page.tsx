@@ -6,12 +6,12 @@ import { mapDbPost, type BlogCategory } from "@/lib/blog-data"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Blog | Revenue Ladder",
+  title: "AI, automation & web design blog | Revenue Ladder",
   description:
     "Long-form writing on AI, automation, websites, and the engineering work that makes small-business growth boring on purpose. From the team in Bangor, Wales.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog | Revenue Ladder",
+    title: "AI, automation & web design blog | Revenue Ladder",
     description:
       "Long-form writing on AI, automation, websites, and the engineering work that makes small-business growth boring on purpose.",
     url: "/blog",
