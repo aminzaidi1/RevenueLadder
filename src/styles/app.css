@@ -690,3 +690,23 @@
   .ox-modal { border-radius: 16px; }
   .ox-modal-backdrop { padding: 30px 12px; }
 }
+
+/* ── Writer profiles ────────────────────────────────────────────── */
+.wr-form .form-body { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: flex-start; }
+.wr-avatar-wrap { display: flex; flex-direction: column; align-items: center; }
+.wr-avatar-preview {
+  width: 96px; height: 96px; border-radius: 50%;
+  object-fit: cover; border: 3px solid var(--rl-border-soft);
+}
+.wr-avatar-placeholder {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,196,37,.30) 0%, transparent 60%), var(--rl-forest);
+  color: var(--rl-gold); display: grid; place-items: center;
+  font-family: var(--rl-font-display); font-weight: 900; font-size: 28px;
+}
+.wr-list-av {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: var(--rl-forest-tint); color: var(--rl-forest);
+  display: grid; place-items: center;
+  font-family: var(--rl-font-display); font-weight: 800; font-size: 12px;
+}
