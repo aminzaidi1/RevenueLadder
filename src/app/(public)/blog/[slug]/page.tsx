@@ -184,6 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
                 glyph={p.glyph}
                 glyphSub={p.glyphSub}
                 author={p.author}
+                coverImage={p.coverImage}
               />
             ))}
           </div>

@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { type BlogPost, type BlogCategory } from "@/lib/blog-data"
+import { BlogCard } from "@/components/blog/BlogCard"
 
 const POSTS_PER_PAGE = 9
 
@@ -48,53 +50,6 @@ function GlyphThumb({ glyph, glyphSub, cat, catTone, small }: {
   )
 }
 
-function BlogCard({ post }: { post: BlogPost }) {
-  return (
-    <Link href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column" }}>
-      <article style={{
-        background: "var(--rl-surface)", border: "2px solid var(--rl-border-soft)",
-        borderRadius: 20, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column",
-      }}>
-        <div style={{ height: 130 }}>
-          <GlyphThumb glyph={post.glyph} glyphSub={post.glyphSub} cat={post.cat} catTone={post.catTone} small />
-        </div>
-        <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--rl-fg-3)" }}>
-            <span>{post.date}</span>
-            <span style={{ width: 3, height: 3, borderRadius: "50%", background: "currentColor", display: "inline-block" }} />
-            <span>{post.readMins} min read</span>
-          </div>
-          <h3 style={{
-            fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 700,
-            fontSize: 15, lineHeight: 1.3, letterSpacing: "-.01em", color: "var(--rl-fg-1)",
-          }}>
-            {post.title}
-          </h3>
-          <p style={{ fontSize: 13, color: "var(--rl-fg-2)", lineHeight: 1.6, flex: 1 }}>
-            {post.excerpt}
-          </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 10, borderTop: "1px solid var(--rl-border-soft)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-              <div style={{
-                width: 24, height: 24, borderRadius: "50%",
-                background: "var(--rl-forest-tint)", color: "var(--rl-forest)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 9, fontWeight: 800,
-                fontFamily: "var(--font-montserrat, var(--rl-font-display))",
-              }}>
-                {post.author.initials}
-              </div>
-              <span style={{ fontSize: 12, color: "var(--rl-fg-3)" }}>{post.author.name}</span>
-            </div>
-            <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--rl-forest)", fontWeight: 700 }}>
-              Read more <ArrowRight size={11} />
-            </span>
-          </div>
-        </div>
-      </article>
-    </Link>
-  )
-}
 
 export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; categories: BlogCategory[] }) {
   const [filter, setFilter] = useState("all")
@@ -114,8 +69,8 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
   return (
     <>
       {/* Header */}
-      <section style={{ padding: "80px 0 0", background: "var(--rl-bg)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+      <section className="rl-blog-header" style={{ background: "var(--rl-bg)" }}>
+        <div className="rl-inner">
           <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 720, margin: "0 auto 40px", textAlign: "center", alignItems: "center" }}>
             <span style={{
               display: "inline-flex", alignItems: "center",
@@ -175,17 +130,30 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
       {/* Featured post */}
       {filter === "all" && featured && (
         <section style={{ background: "var(--rl-bg)" }}>
-          <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px 40px" }}>
+          <div className="rl-inner" style={{ paddingBottom: 40 }}>
             <Link href={`/blog/${featured.slug}`} style={{ textDecoration: "none" }}>
-              <div style={{
-                background: "var(--rl-surface)", border: "2px solid var(--rl-border-soft)",
-                borderRadius: 24, overflow: "hidden",
-                display: "grid", gridTemplateColumns: "340px 1fr",
-              }}>
-                <div style={{ height: 280, position: "relative" }}>
-                  <GlyphThumb glyph={featured.glyph} glyphSub={featured.glyphSub} cat={featured.cat} catTone={featured.catTone} />
-                </div>
-                <div style={{ padding: "36px 40px", display: "flex", flexDirection: "column", gap: 14 }}>
+              <div
+                className={featured.coverImage ? undefined : "rl-blog-featured"}
+                style={{
+                  background: "var(--rl-surface)", border: "2px solid var(--rl-border-soft)",
+                  borderRadius: 24, overflow: "hidden",
+                }}
+              >
+                {featured.coverImage ? (
+                  <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
+                    <Image
+                      src={featured.coverImage}
+                      alt={featured.title}
+                      fill
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                ) : (
+                  <div style={{ minHeight: 180, position: "relative" }} className="rl-blog-featured-thumb">
+                    <GlyphThumb glyph={featured.glyph} glyphSub={featured.glyphSub} cat={featured.cat} catTone={featured.catTone} />
+                  </div>
+                )}
+                <div className="rl-blog-feat-content">
                   <span style={{
                     fontSize: 12, fontWeight: 700, color: "var(--rl-gold-deep)",
                     background: "var(--rl-gold-tint)", padding: "3px 12px", borderRadius: 9999, alignSelf: "flex-start",
@@ -202,7 +170,7 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
                   <p style={{ fontSize: 15, color: "var(--rl-fg-2)", lineHeight: 1.65, flex: 1 }}>
                     {featured.excerpt}
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <div style={{
                         width: 36, height: 36, borderRadius: "50%",
@@ -230,11 +198,26 @@ export function BlogIndexClient({ posts, categories }: { posts: BlogPost[]; cate
       )}
 
       {/* Post grid */}
-      <section style={{ padding: "0 0 96px", background: "var(--rl-bg)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+      <section className="rl-blog-posts-section" style={{ background: "var(--rl-bg)" }}>
+        <div className="rl-inner">
           {visiblePosts.length > 0 ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
-              {visiblePosts.map(post => <BlogCard key={post.slug} post={post} />)}
+            <div className="rl-grid-3" style={{ marginBottom: 48 }}>
+              {visiblePosts.map(post => (
+                <BlogCard
+                  key={post.slug}
+                  slug={post.slug}
+                  cat={post.cat}
+                  catTone={post.catTone}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  date={post.date}
+                  readingTime={post.readMins}
+                  glyph={post.glyph}
+                  glyphSub={post.glyphSub}
+                  author={post.author}
+                  coverImage={post.coverImage}
+                />
+              ))}
             </div>
           ) : (
             <div style={{ padding: "80px 0", textAlign: "center", color: "var(--rl-fg-3)", fontSize: 15 }}>

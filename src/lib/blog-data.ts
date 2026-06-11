@@ -17,6 +17,7 @@ export interface BlogPost {
   glyph: string
   glyphSub: string
   featured?: boolean
+  coverImage?: string | null
 }
 
 export interface BlogCategory {
@@ -57,6 +58,7 @@ export function mapDbPost(db: DbBlogPost): BlogPost {
     glyph: cat.slice(0, 3).toUpperCase(),
     glyphSub: cat,
     featured: db.featured,
+    coverImage: db.cover_image_url,
   }
 }
 

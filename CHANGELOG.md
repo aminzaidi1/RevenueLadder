@@ -3,6 +3,25 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-06-11
+
+### Added
+- Cover image support on blog index: `coverImage` field added to `BlogPost` type and `mapDbPost`; featured card shows full-width 16:9 image when present; grid cards and related posts on slug page also display cover images
+- CTA block colour picker in the rich editor: 6 brand colour swatches plus a custom hex input with auto light/dark text detection; colour persists as `data-bg-color` in stored HTML
+- Cover image upload button in `BlogPostForm`: calls `/api/upload`, populates URL field, shows thumbnail preview
+- Responsive CSS classes: `rl-inner`, `rl-blog-header`, `rl-blog-feat-content`, `rl-blog-posts-section` for mobile-first blog layout
+
+### Changed
+- Blog index grid is now fully responsive: 1 col on mobile, 2 col on tablet, 3 col on desktop -- no more horizontal scroll
+- Featured card switches to stacked image-top layout when a cover image is present; falls back to side-by-side glyph layout when not
+- Replaced inline `BlogCard` in `BlogIndexClient` with the shared `BlogCard` component
+- Container padding on blog pages is now responsive (16px mobile, 24px tablet, 32px desktop)
+- Added `*.supabase.co` and `i.postimg.cc` to `next.config.ts` `remotePatterns`
+
+### Fixed
+- Drop cap float no longer creates a gap before the next paragraph; subsequent short lines now wrap around the drop cap correctly
+- Drop cap pseudo-element no longer leaks into CTA blocks, callouts, or pull quotes
+
 ## [Unreleased] - 2026-05-22
 
 ### Added
