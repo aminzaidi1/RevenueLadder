@@ -2,9 +2,10 @@
 
 import { useState, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Loader2, Trash2, CheckCircle, XCircle, Upload } from "lucide-react"
+import Link from "next/link"
+import { Loader2, Trash2, CheckCircle, XCircle, Upload, UserCheck } from "lucide-react"
 import { RichEditor } from "@/components/dashboard/RichEditor"
-import type { DbBlogPost } from "@/lib/supabase/blog"
+import type { DbBlogPost, WriterProfile } from "@/lib/supabase/blog"
 
 const CATEGORIES = [
   { value: "AI", label: "AI" },
@@ -27,9 +28,10 @@ interface Toast { id: number; kind: "ok" | "err"; msg: string }
 
 interface BlogPostFormProps {
   post?: DbBlogPost
+  writers?: WriterProfile[]
 }
 
-export function BlogPostForm({ post }: BlogPostFormProps) {
+export function BlogPostForm({ post, writers = [] }: BlogPostFormProps) {
   const router = useRouter()
   const isEdit = !!post
   const slugTouched = useRef(isEdit)
@@ -40,6 +42,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
   const [content, setContent] = useState(post?.content ?? "")
   const [author, setAuthor] = useState(post?.author ?? "")
   const [authorRole, setAuthorRole] = useState(post?.author_role ?? "")
+  const [writerId, setWriterId] = useState(post?.writer_profile_id ?? "")
   const [category, setCategory] = useState(post?.category ?? "")
   const [readMins, setReadMins] = useState(String(post?.reading_time_minutes ?? ""))
   const [coverUrl, setCoverUrl] = useState(post?.cover_image_url ?? "")
@@ -60,6 +63,17 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 4000)
   }, [])
 
+  const handleWriterChange = (id: string) => {
+    setWriterId(id)
+    if (id) {
+      const w = writers.find((x) => x.id === id)
+      if (w) {
+        setAuthor(w.name)
+        setAuthorRole(w.role ?? "")
+      }
+    }
+  }
+
   const handleCoverUpload = async (file: File) => {
     setCoverUploading(true)
     try {
@@ -78,9 +92,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
 
   const handleTitleChange = (v: string) => {
     setTitle(v)
-    if (!slugTouched.current) {
-      setSlug(toSlug(v))
-    }
+    if (!slugTouched.current) setSlug(toSlug(v))
   }
 
   const handleSlugChange = (v: string) => {
@@ -95,6 +107,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
     content,
     author: author.trim(),
     author_role: authorRole.trim() || null,
+    writer_profile_id: writerId || null,
     category: category || null,
     reading_time_minutes: readMins ? parseInt(readMins, 10) : null,
     cover_image_url: coverUrl.trim() || null,
@@ -158,6 +171,8 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
     }
   }
 
+  const linkedWriter = writers.find((w) => w.id === writerId)
+
   return (
     <>
       <div className="post-form">
@@ -205,11 +220,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
 
             <div className="form-card">
               <div className="form-card-title">Content</div>
-              <RichEditor
-                value={content}
-                onChange={setContent}
-                placeholder="Write your post here..."
-              />
+              <RichEditor value={content} onChange={setContent} placeholder="Write your post here..." />
             </div>
 
             <div className="form-card">
@@ -283,35 +294,18 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
             </div>
 
             <div className="form-actions">
-              <button
-                type="button"
-                className="abtn primary"
-                onClick={handleSave}
-                disabled={saving}
-              >
+              <button type="button" className="abtn primary" onClick={handleSave} disabled={saving}>
                 {saving && <Loader2 size={14} strokeWidth={2} />}
                 {saving ? "Saving..." : isEdit ? "Save changes" : "Create post"}
               </button>
-              <button
-                type="button"
-                className="abtn ghost"
-                onClick={() => router.push("/dashboard/blog")}
-              >
+              <button type="button" className="abtn ghost" onClick={() => router.push("/dashboard/blog")}>
                 Cancel
               </button>
               {isEdit && (
                 <>
                   <div className="sep" />
-                  <button
-                    type="button"
-                    className="abtn danger"
-                    onClick={handleDelete}
-                    disabled={deleting}
-                  >
-                    {deleting
-                      ? <Loader2 size={14} strokeWidth={2} />
-                      : <Trash2 size={14} strokeWidth={2} />
-                    }
+                  <button type="button" className="abtn danger" onClick={handleDelete} disabled={deleting}>
+                    {deleting ? <Loader2 size={14} strokeWidth={2} /> : <Trash2 size={14} strokeWidth={2} />}
                     Delete post
                   </button>
                 </>
@@ -328,11 +322,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
                   <div className="toggle-sub">Visible on the public blog</div>
                 </div>
                 <label className="toggle">
-                  <input
-                    type="checkbox"
-                    checked={published}
-                    onChange={(e) => setPublished(e.target.checked)}
-                  />
+                  <input type="checkbox" checked={published} onChange={(e) => setPublished(e.target.checked)} />
                   <span className="toggle-track" />
                 </label>
               </div>
@@ -342,11 +332,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
                   <div className="toggle-sub">Pinned at top of blog listing</div>
                 </div>
                 <label className="toggle">
-                  <input
-                    type="checkbox"
-                    checked={featured}
-                    onChange={(e) => setFeatured(e.target.checked)}
-                  />
+                  <input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} />
                   <span className="toggle-track" />
                 </label>
               </div>
@@ -356,11 +342,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
               <div className="form-card-title">Details</div>
               <div className="field" style={{ marginBottom: 12 }}>
                 <label htmlFor="pf-cat">Category</label>
-                <select
-                  id="pf-cat"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
+                <select id="pf-cat" value={category} onChange={(e) => setCategory(e.target.value)}>
                   <option value="">No category</option>
                   {CATEGORIES.map((c) => (
                     <option key={c.value} value={c.value}>{c.label}</option>
@@ -384,7 +366,40 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
             <div className="form-card">
               <div className="form-card-title">Author</div>
               <div className="field" style={{ marginBottom: 12 }}>
-                <label htmlFor="pf-author">Name</label>
+                <label htmlFor="pf-writer">
+                  <UserCheck size={11} style={{ display: "inline", marginRight: 4 }} />
+                  Writer profile
+                </label>
+                {writers.length === 0 ? (
+                  <div style={{ fontSize: 12, color: "var(--rl-fg-3)", padding: "8px 0" }}>
+                    No writers yet.{" "}
+                    <Link href="/dashboard/writers/new" style={{ color: "var(--rl-forest)", fontWeight: 700 }}>
+                      Create one first
+                    </Link>
+                  </div>
+                ) : (
+                  <>
+                    <select id="pf-writer" value={writerId} onChange={(e) => handleWriterChange(e.target.value)}>
+                      <option value="">No linked profile</option>
+                      {writers.map((w) => (
+                        <option key={w.id} value={w.id}>{w.name}{w.role ? ` — ${w.role}` : ""}</option>
+                      ))}
+                    </select>
+                    {linkedWriter?.avatar_url && (
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
+                        <img
+                          src={linkedWriter.avatar_url}
+                          alt={linkedWriter.name}
+                          style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }}
+                        />
+                        <span style={{ fontSize: 12, color: "var(--rl-fg-3)" }}>Avatar will show on the blog</span>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+              <div className="field" style={{ marginBottom: 12 }}>
+                <label htmlFor="pf-author">Display name</label>
                 <input
                   id="pf-author"
                   type="text"

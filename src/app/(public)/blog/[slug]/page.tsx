@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Clock, Check, ArrowRight, Mail, Zap } from "lucide-react"
-import { getBlogPost, listBlogPosts } from "@/lib/supabase/blog"
+import { Clock, Check, ArrowRight, Mail, Zap, AtSign, Globe } from "lucide-react"
+import { getBlogPostWithWriter, listBlogPosts, listComments } from "@/lib/supabase/blog"
 import { mapDbPost, type BlogCategory } from "@/lib/blog-data"
 import { BlogCard } from "@/components/blog/BlogCard"
+import { CommentList } from "@/components/blog/CommentList"
+import { CommentForm } from "@/components/blog/CommentForm"
+import { ViewTracker } from "@/components/blog/ViewTracker"
 
 export const revalidate = 60
 
@@ -12,7 +15,7 @@ type Props = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await getBlogPost(slug)
+  const post = await getBlogPostWithWriter(slug)
   if (!post) return { title: "Post not found | Revenue Ladder" }
   return {
     title: post.meta_title ?? `${post.title} | Revenue Ladder`,
@@ -23,12 +26,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const dbPost = await getBlogPost(slug)
+  const dbPost = await getBlogPostWithWriter(slug)
   if (!dbPost) notFound()
 
   const post = mapDbPost(dbPost)
+  const writer = dbPost.writer_profiles
 
-  const allDbPosts = await listBlogPosts({ publishedOnly: true })
+  const [allDbPosts, comments] = await Promise.all([
+    listBlogPosts({ publishedOnly: true }),
+    listComments({ postId: dbPost.id, approvedOnly: true }),
+  ])
+
   const allPosts = allDbPosts.map(mapDbPost)
   const sameCat = allPosts.filter((p) => p.slug !== slug && p.catId === post.catId)
   const otherCat = allPosts.filter((p) => p.slug !== slug && p.catId !== post.catId)
@@ -44,6 +52,11 @@ export default async function BlogPostPage({ params }: Props) {
     id, label, count,
   }))
 
+  const displayName = writer?.name ?? post.author.name
+  const displayRole = post.author.role
+  const avatarUrl = writer?.avatar_url ?? null
+  const authorInitials = post.author.initials
+
   const blogPostingSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -51,8 +64,8 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.excerpt ?? undefined,
     author: {
       "@type": "Person",
-      name: post.author.name,
-      jobTitle: post.author.role,
+      name: displayName,
+      jobTitle: displayRole,
     },
     publisher: {
       "@type": "Organization",
@@ -66,6 +79,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <ViewTracker slug={slug} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
@@ -79,10 +93,14 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
               <h1>{post.title}</h1>
               <div className="bl-byline">
-                <div className="av">{post.author.initials}</div>
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt={displayName} className="av-img" />
+                ) : (
+                  <div className="av">{authorInitials}</div>
+                )}
                 <div>
-                  <div className="nm">{post.author.name}</div>
-                  <div className="rl">{post.author.role}</div>
+                  <div className="nm">{displayName}</div>
+                  <div className="rl">{displayRole}</div>
                 </div>
                 <div className="meta">
                   <span><Clock size={12} strokeWidth={2.5} /> {post.readMins} min read</span>
@@ -112,15 +130,43 @@ export default async function BlogPostPage({ params }: Props) {
             />
 
             <div className="bl-author-bio">
-              <div className="av">{post.author.initials}</div>
+              {avatarUrl ? (
+                <img src={avatarUrl} alt={displayName} className="av-img av-img-lg" />
+              ) : (
+                <div className="av">{authorInitials}</div>
+              )}
               <div>
-                <div className="nm">{post.author.name}</div>
-                <div className="rl">{post.author.role}</div>
+                <div className="nm">{displayName}</div>
+                <div className="rl">{displayRole}</div>
+                {writer?.bio && <div className="bio">{writer.bio}</div>}
                 <div className="links">
+                  {writer?.twitter_handle && (
+                    <Link
+                      href={`https://twitter.com/${writer.twitter_handle}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Twitter"
+                    >
+                      <AtSign size={14} />
+                    </Link>
+                  )}
+                  {writer?.linkedin_url && (
+                    <Link
+                      href={writer.linkedin_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
+                      <Globe size={14} />
+                    </Link>
+                  )}
                   <Link href="/contact" aria-label="Email"><Mail size={14} /></Link>
                 </div>
               </div>
             </div>
+
+            <CommentList comments={comments} />
+            <CommentForm slug={slug} />
           </article>
 
           <aside className="bl-side">

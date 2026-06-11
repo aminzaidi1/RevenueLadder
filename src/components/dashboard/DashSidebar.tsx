@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-  LayoutGrid, FileText, Inbox, LogOut,
+  LayoutGrid, FileText, Inbox, LogOut, Users, MessageSquare,
   PhoneCall, Mail, NotebookPen, ClipboardList, BookOpen, Compass,
 } from "lucide-react"
 
@@ -11,9 +11,11 @@ const NAV = [
   {
     group: "Manage",
     links: [
-      { href: "/dashboard",          label: "Overview", icon: LayoutGrid },
-      { href: "/dashboard/blog",     label: "Blog",     icon: FileText,  pip: true },
-      { href: "/dashboard/contacts", label: "Contacts", icon: Inbox },
+      { href: "/dashboard",                  label: "Overview",  icon: LayoutGrid },
+      { href: "/dashboard/blog",             label: "Blog",      icon: FileText,       pip: true },
+      { href: "/dashboard/blog/comments",    label: "Comments",  icon: MessageSquare },
+      { href: "/dashboard/writers",          label: "Writers",   icon: Users },
+      { href: "/dashboard/contacts",         label: "Contacts",  icon: Inbox },
     ],
   },
   {
