@@ -6,6 +6,22 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased] - 2026-06-11
 
 ### Added
+- Live Urvo voice demo on `/services/voice-agents` hero: visitors can tap the mic to speak with the Bryn demo agent, with the call transcript streaming live into the existing forest/gold call panel
+- `UrvoVoiceDemo` client component wrapping `@elevenlabs/react`, handling rate limits, mic permission, connecting/connected/ending states, and a five-minute session cap
+- Blog comments system: public `CommentForm` and `CommentList` on every post, `POST /api/blog/[slug]/comments` for submissions, and a `/dashboard/blog/comments` moderation queue using `CommentModerationTable`
+- Blog view tracking: `ViewTracker` client component plus `POST /api/blog/[slug]/view` to increment view counts
+- Writers profile system: `/dashboard/writers` CRUD with avatar upload via `POST /api/upload/avatar`, and writer linking inside `BlogPostForm`
+- Admin Supabase client (`src/lib/supabase/admin.ts`) for service-role moderation queries
+- `NEXT_PUBLIC_URVO_API_URL` env var pointing at the Urvo demo backend
+- `@elevenlabs/react` dependency
+
+### Changed
+- Voice-agents hero swaps the static scripted `LiveCallPanel` for the interactive `UrvoVoiceDemo`
+- `BlogPostForm` now lets editors pick a writer profile and shows their avatar inline
+
+## [Unreleased] - 2026-06-11
+
+### Added
 - Cover image support on blog index: `coverImage` field added to `BlogPost` type and `mapDbPost`; featured card shows full-width 16:9 image when present; grid cards and related posts on slug page also display cover images
 - CTA block colour picker in the rich editor: 6 brand colour swatches plus a custom hex input with auto light/dark text detection; colour persists as `data-bg-color` in stored HTML
 - Cover image upload button in `BlogPostForm`: calls `/api/upload`, populates URL field, shows thumbnail preview

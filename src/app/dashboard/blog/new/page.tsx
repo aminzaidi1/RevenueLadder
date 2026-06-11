@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { listWriters } from "@/lib/supabase/blog"
 import { BlogPostForm } from "@/components/dashboard/BlogPostForm"
 
 export const metadata: Metadata = { title: "New post | Revenue Ladder" }
 
-export default function NewBlogPostPage() {
+export default async function NewBlogPostPage() {
+  const writers = await listWriters()
+
   return (
     <>
       <div className="topbar-wrap">
@@ -27,7 +30,7 @@ export default function NewBlogPostPage() {
           </div>
         </div>
 
-        <BlogPostForm />
+        <BlogPostForm writers={writers} />
       </div>
     </>
   )

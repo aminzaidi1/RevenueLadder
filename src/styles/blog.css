@@ -486,3 +486,105 @@
   .bl-author-bio { grid-template-columns: 1fr; }
   .bl-filters { width: 100%; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; }
 }
+
+/* ── Avatar image variant ────────────────────────────────────────── */
+img.av-img {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--rl-border-soft);
+}
+img.av-img-lg {
+  width: 80px; height: 80px;
+}
+
+/* ── Comments section ────────────────────────────────────────────── */
+.bl-comments { margin-top: 48px; }
+.bl-comments-hd {
+  font-family: var(--rl-font-display); font-weight: 800;
+  font-size: 20px; letter-spacing: -.015em;
+  color: var(--rl-fg-1); margin-bottom: 24px;
+}
+.bl-comment-list { display: flex; flex-direction: column; gap: 0; }
+.bl-comment {
+  display: grid; grid-template-columns: 40px 1fr; gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rl-border-soft);
+}
+.bl-comment:last-child { border-bottom: 1px solid var(--rl-border-soft); }
+.bl-comment-av {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: var(--rl-forest-tint); color: var(--rl-forest);
+  display: grid; place-items: center;
+  font-family: var(--rl-font-display); font-weight: 800; font-size: 13px;
+}
+.bl-comment-body { min-width: 0; }
+.bl-comment-meta {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;
+}
+.bl-comment-author {
+  font-family: var(--rl-font-display); font-weight: 700;
+  font-size: 14px; color: var(--rl-fg-1);
+}
+.bl-comment-date {
+  font-family: var(--rl-font-mono); font-size: 11px; color: var(--rl-fg-3);
+}
+.bl-comment-text {
+  font-size: 15px; color: var(--rl-fg-2); line-height: 1.65; margin: 0;
+}
+
+/* ── Comment form ────────────────────────────────────────────────── */
+.bl-comment-form-wrap { margin-top: 40px; }
+.bl-comment-form {
+  background: var(--rl-surface); border: 2px solid var(--rl-border-soft);
+  border-radius: 20px; padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  margin-top: 20px;
+}
+.bl-cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.bl-cf-field { display: flex; flex-direction: column; gap: 6px; }
+.bl-cf-field label {
+  font-size: 12px; font-weight: 700; color: var(--rl-fg-2); letter-spacing: .01em;
+}
+.bl-cf-note { font-weight: 500; color: var(--rl-fg-3); }
+.bl-cf-field input, .bl-cf-field textarea {
+  border-radius: 10px; border: 2px solid var(--rl-border);
+  background: var(--rl-bg); padding: 10px 14px;
+  font-size: 14px; outline: none; color: var(--rl-fg-1); font-family: var(--rl-font-body);
+  transition: border-color var(--rl-dur-base), box-shadow var(--rl-dur-base);
+  width: 100%;
+}
+.bl-cf-field input:focus, .bl-cf-field textarea:focus {
+  border-color: var(--rl-forest); box-shadow: 0 0 0 4px rgba(26,77,46,.10);
+}
+.bl-cf-field input::placeholder, .bl-cf-field textarea::placeholder { color: var(--rl-fg-3); }
+.bl-cf-field textarea { resize: vertical; min-height: 100px; padding-top: 10px; }
+.bl-cf-error {
+  font-size: 13px; color: #dc2626; font-weight: 600;
+  padding: 10px 14px; background: var(--rl-error-bg);
+  border: 1px solid var(--rl-error-border); border-radius: 8px;
+}
+.bl-cf-submit {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--rl-forest); color: #fff;
+  border: none; cursor: pointer;
+  border-radius: 10px; font-family: var(--rl-font-body);
+  font-weight: 700; font-size: 14px;
+  height: 44px; padding: 0 22px;
+  transition: background var(--rl-dur-base), box-shadow var(--rl-dur-base);
+  box-shadow: 0 2px 8px rgba(26,77,46,.28);
+}
+.bl-cf-submit:hover { background: var(--rl-forest-dark); box-shadow: var(--rl-shadow-pop); }
+.bl-cf-submit:disabled { opacity: .6; cursor: not-allowed; }
+.bl-comment-success {
+  margin-top: 40px; display: flex; align-items: flex-start; gap: 14px;
+  padding: 22px 24px; border-radius: 14px;
+  background: var(--rl-forest-tint); border: 2px solid rgba(26,77,46,.20);
+  color: var(--rl-forest);
+}
+.bl-comment-success-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+.bl-comment-success-sub { font-size: 13px; color: var(--rl-fg-2); line-height: 1.5; }
+
+@media (max-width: 640px) {
+  .bl-cf-row { grid-template-columns: 1fr; }
+}

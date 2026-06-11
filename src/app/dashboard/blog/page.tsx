@@ -48,6 +48,7 @@ export default async function DashboardBlogPage() {
                   <th>Title</th>
                   <th>Category</th>
                   <th>Author</th>
+                  <th style={{ textAlign: "right" }}>Views</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
@@ -68,6 +69,11 @@ export default async function DashboardBlogPage() {
                     <td>
                       <div className="nm">{post.author}</div>
                       {post.author_role && <div className="sub-text">{post.author_role}</div>}
+                    </td>
+                    <td style={{ textAlign: "right" }}>
+                      <span style={{ fontFamily: "var(--rl-font-mono)", fontSize: 13, fontWeight: 700, color: post.views > 0 ? "var(--rl-forest)" : "var(--rl-fg-3)" }}>
+                        {post.views.toLocaleString("en-GB")}
+                      </span>
                     </td>
                     <td>
                       {post.published

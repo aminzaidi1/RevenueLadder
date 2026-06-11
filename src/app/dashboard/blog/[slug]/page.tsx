@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { getBlogPost } from "@/lib/supabase/blog"
+import { getBlogPost, listWriters } from "@/lib/supabase/blog"
 import { BlogPostForm } from "@/components/dashboard/BlogPostForm"
 
 type Props = { params: Promise<{ slug: string }> }
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function EditBlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = await getBlogPost(slug)
+  const [post, writers] = await Promise.all([getBlogPost(slug), listWriters()])
 
   if (!post) notFound()
 
@@ -45,7 +45,7 @@ export default async function EditBlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        <BlogPostForm post={post} />
+        <BlogPostForm post={post} writers={writers} />
       </div>
     </>
   )

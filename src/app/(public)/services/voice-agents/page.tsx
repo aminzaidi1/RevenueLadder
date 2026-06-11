@@ -1,47 +1,11 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
 import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
+import { UrvoVoiceDemo } from "@/components/voice/UrvoVoiceDemo"
 
 export const metadata: Metadata = {
   title: "AI voice agents Wales | Revenue Ladder",
   description: "AI voice agents that answer every call, take bookings, collect deposits, and hand off to humans when it matters. Built for Welsh and UK SMEs.",
-}
-
-function LiveCallPanel() {
-  return (
-    <div className="t1-call">
-      <div className="t1-call-head">
-        <div className="t1-caller">
-          <div className="t1-wave">{Array.from({ length: 5 }).map((_, i) => <span key={i} />)}</div>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>Bryn · Voice Agent</div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,.5)" }}>Snowdon Trails · Active call</div>
-          </div>
-          <div style={{ marginLeft: "auto", fontSize: 10, fontWeight: 800, letterSpacing: ".14em", textTransform: "uppercase" as const, color: "var(--rl-success)", display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--rl-success)" }} />Live
-          </div>
-        </div>
-      </div>
-      <div className="t1-call-body">
-        <div className="t1-script">
-          {[
-            { who: "Caller", text: "Hi, I want to book two places on the Cwm Idwal walk for Saturday." },
-            { who: "Bryn",   text: "Great choice -- two spots on Saturday 9am. That is £18 per person. Shall I take a deposit now?" },
-            { who: "Caller", text: "Yes please, card ending 4242." },
-            { who: "Bryn",   text: "Brilliant. Deposit taken. Confirmation text on its way." },
-          ].map((l, i) => (
-            <div key={i} className={`t1-line${l.who === "Bryn" ? " agent" : ""}`}>
-              <span className="who">{l.who}</span>
-              <span className="txt">{l.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>Booking created · 2 x Cwm Idwal · £18 deposit</span>
-      </div>
-    </div>
-  )
 }
 
 const spec: AIServiceSpec = {
@@ -51,7 +15,7 @@ const spec: AIServiceSpec = {
   sub: "A voice agent that picks up within two rings, knows your business inside out, books appointments directly into your calendar, and collects a deposit on the call. No hold music. No missed bookings.",
   secondaryCta: "Hear a live demo",
   trustBadges: ["14,200+ calls handled", "38s ring-to-booked", "320h saved / yr"],
-  heroVisual: <LiveCallPanel />,
+  heroVisual: <UrvoVoiceDemo />,
   capsHead: {
     eyebrow: "Six things Bryn does on every call",
     title: <>Six capabilities.<br /><em>One voice.</em></>,

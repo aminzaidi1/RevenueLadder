@@ -1,25 +1,48 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { FileText, Inbox, TrendingUp, Eye, ArrowRight, PenSquare, UserPlus, CheckCircle } from "lucide-react"
+import { FileText, Inbox, TrendingUp, Eye, ArrowRight, PenSquare, MessageSquare } from "lucide-react"
+import { getBlogStats } from "@/lib/supabase/blog"
 
 export const metadata: Metadata = { title: "Overview | Revenue Ladder" }
 
-const STATS = [
-  { lbl: "Published posts",    v: "12",   chg: "+2 this month",   up: true,  icon: FileText,     gold: false },
-  { lbl: "Draft posts",        v: "3",    chg: "Awaiting review",  up: false, icon: PenSquare,    gold: true  },
-  { lbl: "Contact submissions",v: "8",    chg: "+3 this week",    up: true,  icon: Inbox,        gold: false },
-  { lbl: "Blog page views",    v: "1.4k", chg: "+18% vs last mo", up: true,  icon: Eye,          gold: false },
-]
+export default async function DashboardPage() {
+  const stats = await getBlogStats()
 
-const ACTIVITY = [
-  { icon: FileText,    bg: "var(--rl-forest-tint)", color: "var(--rl-forest)",   t: <><strong>Welsh Voice Agents</strong> post published</>,     m: "Today, 09:41 · Catrin Jenkins" },
-  { icon: Inbox,       bg: "var(--rl-gold-tint)",   color: "var(--rl-gold-deep)",t: <><strong>New contact</strong> from Conwy Foods Ltd</>,       m: "Today, 08:15 · via /contact" },
-  { icon: PenSquare,   bg: "var(--rl-forest-tint)", color: "var(--rl-forest)",   t: <><strong>Pipeline to Revenue</strong> draft saved</>,        m: "Yesterday, 16:30 · Alaw Pugh" },
-  { icon: UserPlus,    bg: "var(--rl-gold-tint)",   color: "var(--rl-gold-deep)",t: <><strong>New contact</strong> from Snowdon Trails</>,        m: "Yesterday, 14:02 · via /contact" },
-  { icon: CheckCircle, bg: "var(--rl-forest-tint)", color: "var(--rl-forest)",   t: <><strong>Lighthouse 96</strong> post published</>,           m: "2 days ago · Eira Wynne" },
-]
+  const STATS = [
+    {
+      lbl: "Published posts",
+      v: String(stats.publishedCount),
+      chg: `${stats.draftCount} draft${stats.draftCount === 1 ? "" : "s"}`,
+      up: stats.publishedCount > 0,
+      icon: FileText,
+      gold: false,
+    },
+    {
+      lbl: "Total blog views",
+      v: stats.totalViews >= 1000 ? `${(stats.totalViews / 1000).toFixed(1)}k` : String(stats.totalViews),
+      chg: "Across all published posts",
+      up: stats.totalViews > 0,
+      icon: Eye,
+      gold: false,
+    },
+    {
+      lbl: "Pending comments",
+      v: String(stats.pendingComments),
+      chg: stats.pendingComments > 0 ? "Awaiting moderation" : "All clear",
+      up: stats.pendingComments === 0,
+      icon: MessageSquare,
+      gold: stats.pendingComments > 0,
+    },
+    {
+      lbl: "Contact submissions",
+      v: "--",
+      chg: "Coming soon",
+      up: false,
+      icon: Inbox,
+      gold: false,
+    },
+  ]
 
-export default function DashboardPage() {
   return (
     <>
       <div className="topbar-wrap">
@@ -69,22 +92,45 @@ export default function DashboardPage() {
         <div className="row-2">
           <div className="surface">
             <div className="surface-hd">
-              <h3>Recent activity</h3>
-              <span className="meta">Last 7 days</span>
+              <h3>Top posts by views</h3>
+              <Link href="/dashboard/blog" style={{ fontSize: 12, color: "var(--rl-forest)", fontWeight: 700, textDecoration: "none" }}>
+                View all
+              </Link>
             </div>
-            <div className="feed">
-              {ACTIVITY.map(({ icon: Icon, bg, color, t, m }, i) => (
-                <div key={i} className="feed-row">
-                  <div className="dot-ic" style={{ background: bg, color }}>
-                    <Icon size={15} strokeWidth={2} />
-                  </div>
-                  <div className="body">
-                    <div className="t">{t}</div>
-                    <div className="m">{m}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {stats.topPosts.length === 0 ? (
+              <div style={{ padding: "32px 22px", color: "var(--rl-fg-3)", fontSize: 13 }}>
+                No published posts yet.
+              </div>
+            ) : (
+              <table className="tbl">
+                <thead>
+                  <tr>
+                    <th>Post</th>
+                    <th style={{ textAlign: "right" }}>Views</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.topPosts.map((p) => (
+                    <tr key={p.slug}>
+                      <td>
+                        <Link
+                          href={`/blog/${p.slug}`}
+                          target="_blank"
+                          style={{ color: "var(--rl-fg-1)", fontWeight: 600, fontSize: 13, textDecoration: "none" }}
+                        >
+                          {p.title}
+                        </Link>
+                      </td>
+                      <td style={{ textAlign: "right" }}>
+                        <span style={{ fontFamily: "var(--rl-font-mono)", fontSize: 13, fontWeight: 700, color: "var(--rl-forest)" }}>
+                          {p.views.toLocaleString("en-GB")}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -94,6 +140,12 @@ export default function DashboardPage() {
                 <Link href="/dashboard/blog" className="abtn outline" style={{ justifyContent: "flex-start" }}>
                   <FileText size={14} strokeWidth={2} /> Manage blog posts
                   <ArrowRight size={13} style={{ marginLeft: "auto" }} />
+                </Link>
+                <Link href="/dashboard/blog/comments" className="abtn outline" style={{ justifyContent: "flex-start" }}>
+                  <MessageSquare size={14} strokeWidth={2} /> Moderate comments
+                  {stats.pendingComments > 0 && (
+                    <span className="bdg bdg-wa" style={{ marginLeft: "auto" }}>{stats.pendingComments}</span>
+                  )}
                 </Link>
                 <Link href="/dashboard/contacts" className="abtn outline" style={{ justifyContent: "flex-start" }}>
                   <Inbox size={14} strokeWidth={2} /> View contact submissions
@@ -118,4 +170,3 @@ export default function DashboardPage() {
     </>
   )
 }
-
