@@ -257,10 +257,18 @@
 /* Article body */
 .bl-article { font-size: 17px; color: var(--rl-fg-1); line-height: 1.75; }
 .bl-article p { margin: 0 0 24px; }
-.bl-article p:first-of-type::first-letter {
+.bl-article > p:first-of-type { margin-bottom: 0; }
+.bl-article > p:first-of-type::first-letter {
   font-family: var(--rl-font-display); font-weight: 900;
   font-size: 54px; line-height: 0.9;
   float: left; margin: 6px 12px 0 0; color: var(--rl-forest);
+}
+/* Prevent drop cap leaking into nested block elements */
+.bl-cta-block p::first-letter,
+.bl-callout p::first-letter,
+.bl-pull p::first-letter {
+  float: none; font-size: inherit; font-weight: inherit;
+  line-height: inherit; margin: 0; color: inherit;
 }
 .bl-article h2 {
   font-family: var(--rl-font-display); font-weight: 800;
