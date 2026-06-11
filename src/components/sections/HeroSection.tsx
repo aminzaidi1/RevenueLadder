@@ -19,7 +19,7 @@ const CITIES = ["Bangor", "Cardiff", "Conwy", "Swansea", "Manchester", "Bristol"
 
 const STATS = [
   { v: "48", suffix: "+", label: "Welsh & UK SMEs scaling with us" },
-  { v: "£2.4", suffix: "m", label: "Client revenue automated · 2025" },
+  { v: "£500", suffix: "k", label: "Client revenue automated · 2025" },
   { v: "97",  suffix: "%", label: "Voice-agent uptime, 12-month avg" },
   { v: "30",  suffix: "d", label: "From kickoff to a live launch" },
 ]
@@ -106,7 +106,7 @@ export function HeroSection() {
             <div style={{ display: "flex", gap: 32, marginTop: 40, flexWrap: "wrap", fontSize: 12, color: "rgba(255,255,255,.5)", alignItems: "center" }}>
               <div><b style={{ color: "#fff", fontWeight: 700 }}>48</b> SMEs scaling</div>
               <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(255,255,255,.25)" }} />
-              <div><b style={{ color: "#fff", fontWeight: 700 }}>£2.4m</b> client revenue automated</div>
+              <div><b style={{ color: "#fff", fontWeight: 700 }}>£500k</b> client revenue automated</div>
               <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(255,255,255,.25)" }} />
               <div><b style={{ color: "#fff", fontWeight: 700 }}>4.9★</b> across 36 reviews</div>
             </div>
@@ -178,6 +178,12 @@ export function HeroSection() {
       </div>
 
       {/* Ticker band */}
+      <style>{`
+        @keyframes rl-ticker {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
       <div className="hidden sm:flex" style={{
         marginTop: 40, alignItems: "center", gap: 24,
         padding: "20px 28px", background: "var(--rl-surface)",
@@ -186,12 +192,26 @@ export function HeroSection() {
         <div style={{ flexShrink: 0, fontSize: 10, fontWeight: 800, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--rl-fg-3)", paddingRight: 24, borderRight: "1px solid var(--rl-border-soft)" }}>
           Trusted by SMEs across
         </div>
-        <div style={{ display: "flex", gap: 36, fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 800, fontSize: 16, color: "var(--rl-fg-2)", flexWrap: "nowrap", overflow: "hidden", letterSpacing: "-.01em" }}>
-          {CITIES.map((city, i) => (
-            <span key={city} style={{ whiteSpace: "nowrap", opacity: 0.75, color: i % 2 === 1 ? "var(--rl-forest)" : undefined }}>
-              {city}
-            </span>
-          ))}
+        <div style={{ overflow: "hidden", flex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 48,
+              width: "max-content",
+              animation: "rl-ticker 22s linear infinite",
+              fontFamily: "var(--font-montserrat, var(--rl-font-display))",
+              fontWeight: 800,
+              fontSize: 16,
+              color: "var(--rl-fg-2)",
+              letterSpacing: "-.01em",
+            }}
+          >
+            {[...CITIES, ...CITIES].map((city, i) => (
+              <span key={i} style={{ whiteSpace: "nowrap", opacity: 0.75, color: i % 2 === 1 ? "var(--rl-forest)" : undefined }}>
+                {city}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -201,7 +221,7 @@ export function HeroSection() {
         borderTop: "1px solid var(--rl-border-soft)", borderBottom: "1px solid var(--rl-border-soft)",
       }}>
         {STATS.map(({ v, suffix, label }) => (
-          <div key={label} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <div key={label} style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "center", textAlign: "center" }}>
             <div style={{ fontFamily: "var(--font-montserrat, var(--rl-font-display))", fontWeight: 900, fontSize: 40, letterSpacing: "-.025em", color: "var(--rl-forest)", lineHeight: 1, display: "flex", alignItems: "baseline", gap: 4 }}>
               {v}<small style={{ fontSize: 18, color: "var(--rl-gold-deep)" }}>{suffix}</small>
             </div>

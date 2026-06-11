@@ -48,10 +48,10 @@ export const metadata: Metadata = {
     url: BASE_URL,
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Revenue Ladder — Welsh Web & Automation Agency",
+        alt: "Revenue Ladder - Welsh Web & Automation Agency",
       },
     ],
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Welsh web design & automation agency | Revenue Ladder",
     description:
       "Revenue Ladder builds custom websites, automates business workflows, and improves search rankings for Welsh businesses. Based in Bangor, North Wales.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

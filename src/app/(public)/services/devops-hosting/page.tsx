@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { BuildShipTemplate, type BSServiceSpec } from "@/components/sections/services/BuildShipTemplate"
 
 export const metadata: Metadata = {
-  title: "DevOps & Hosting | RevenueLadder",
+  title: "DevOps & Hosting | Revenue Ladder",
   description: "Managed hosting, uptime monitoring, and on-call support for Welsh and UK businesses. 99.99% uptime. 4-hour incident SLA.",
 }
 

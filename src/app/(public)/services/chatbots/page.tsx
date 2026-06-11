@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Chatbots | RevenueLadder",
+  title: "Chatbots | Revenue Ladder",
   description: "AI chatbots trained on your business that book, qualify leads, and hand off to humans. Built for Welsh and UK SMEs.",
 }
 
@@ -176,5 +177,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function ChatbotsPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Plugs into the tools you already use" />
+    </>
+  )
 }

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Loader2, Trash2, CheckCircle, XCircle } from "lucide-react"
+import { Loader2, Trash2, CheckCircle, XCircle, Upload } from "lucide-react"
 import { RichEditor } from "@/components/dashboard/RichEditor"
 import type { DbBlogPost } from "@/lib/supabase/blog"
 
@@ -50,13 +50,31 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
 
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [coverUploading, setCoverUploading] = useState(false)
   const [toasts, setToasts] = useState<Toast[]>([])
+  const coverInputRef = useRef<HTMLInputElement>(null)
 
   const addToast = useCallback((kind: "ok" | "err", msg: string) => {
     const id = Date.now()
     setToasts((t) => [...t, { id, kind, msg }])
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 4000)
   }, [])
+
+  const handleCoverUpload = async (file: File) => {
+    setCoverUploading(true)
+    try {
+      const fd = new FormData()
+      fd.append("file", file)
+      const res = await fetch("/api/upload", { method: "POST", body: fd })
+      if (!res.ok) throw new Error("Upload failed")
+      const { url } = await res.json() as { url: string }
+      setCoverUrl(url)
+    } catch {
+      addToast("err", "Cover image upload failed.")
+    } finally {
+      setCoverUploading(false)
+    }
+  }
 
   const handleTitleChange = (v: string) => {
     setTitle(v)
@@ -208,14 +226,48 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="pf-cover">Cover image URL</label>
-                  <input
-                    id="pf-cover"
-                    type="url"
-                    value={coverUrl}
-                    onChange={(e) => setCoverUrl(e.target.value)}
-                    placeholder="https://..."
-                  />
+                  <label htmlFor="pf-cover">Cover image</label>
+                  <div style={{ display: "flex", gap: 6 }}>
+                    <input
+                      id="pf-cover"
+                      type="url"
+                      value={coverUrl}
+                      onChange={(e) => setCoverUrl(e.target.value)}
+                      placeholder="https://... or upload below"
+                      style={{ flex: 1 }}
+                    />
+                    <input
+                      ref={coverInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      style={{ display: "none" }}
+                      onChange={e => {
+                        const file = e.target.files?.[0]
+                        if (file) handleCoverUpload(file)
+                        e.target.value = ""
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="abtn outline sm"
+                      onClick={() => coverInputRef.current?.click()}
+                      disabled={coverUploading}
+                      title="Upload cover image"
+                      style={{ flexShrink: 0 }}
+                    >
+                      {coverUploading
+                        ? <Loader2 size={13} strokeWidth={2} />
+                        : <Upload size={13} strokeWidth={2} />
+                      }
+                    </button>
+                  </div>
+                  {coverUrl && (
+                    <img
+                      src={coverUrl}
+                      alt="Cover preview"
+                      style={{ marginTop: 8, height: 72, borderRadius: 8, objectFit: "cover", border: "2px solid var(--rl-border-soft)" }}
+                    />
+                  )}
                 </div>
               </div>
               <div style={{ marginTop: 12 }} className="field">

@@ -3,7 +3,7 @@ import { Shield, Users, ShoppingCart, Mail, BarChart2 } from "lucide-react"
 import { BuildShipTemplate, type BSServiceSpec } from "@/components/sections/services/BuildShipTemplate"
 
 export const metadata: Metadata = {
-  title: "Web App Development | RevenueLadder",
+  title: "Web App Development | Revenue Ladder",
   description: "Custom internal tools, booking systems, and ops dashboards. Fixed scope, fixed price, six to ten weeks. Built for Welsh and UK SMEs.",
 }
 

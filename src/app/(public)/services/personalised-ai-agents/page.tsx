@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Personalised AI Agents | RevenueLadder",
+  title: "Personalised AI Agents | Revenue Ladder",
   description: "Custom AI agents that live where your team works -- triaging inboxes, drafting responses, monitoring sites, and taking notes on calls. Built for Welsh and UK SMEs.",
 }
 
@@ -181,5 +182,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function PersonalisedAIAgentsPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Lives where your team already works" />
+    </>
+  )
 }

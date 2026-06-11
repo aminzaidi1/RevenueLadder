@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Voice Agents | RevenueLadder",
+  title: "AI voice agents Wales | Revenue Ladder",
   description: "AI voice agents that answer every call, take bookings, collect deposits, and hand off to humans when it matters. Built for Welsh and UK SMEs.",
 }
 
@@ -173,5 +174,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function VoiceAgentsPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Connects with your phone system and CRM" />
+    </>
+  )
 }

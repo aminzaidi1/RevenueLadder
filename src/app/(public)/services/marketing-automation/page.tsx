@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Marketing Automation | RevenueLadder",
+  title: "Marketing Automation | Revenue Ladder",
   description: "Automated lead capture, CRM workflows, and nurture sequences that route prospects to revenue. Built for Welsh and UK SMEs.",
 }
 
@@ -185,5 +186,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function MarketingAutomationPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Works with your existing tools" />
+    </>
+  )
 }

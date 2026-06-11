@@ -3,7 +3,7 @@ import { TrendingUp, Check } from "lucide-react"
 import { EngagementTemplate, type EngServiceSpec } from "@/components/sections/services/EngagementTemplate"
 
 export const metadata: Metadata = {
-  title: "Audit & Strategy | RevenueLadder",
+  title: "Audit & Strategy | Revenue Ladder",
   description: "A two-week deep audit of your stack with a costed, prioritised roadmap. Fixed scope, fixed fee, plain English. Hand-built from Bangor.",
 }
 

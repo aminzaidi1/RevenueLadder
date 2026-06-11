@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { AIServiceTemplate, type AIServiceSpec } from "@/components/sections/services/AIServiceTemplate"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 export const metadata: Metadata = {
-  title: "Content Generation | RevenueLadder",
+  title: "Content Generation | Revenue Ladder",
   description: "Long-form articles, web copy, and lead magnets written in your voice -- SEO-tuned, AI-flag free. Built for Welsh and UK SMEs.",
 }
 
@@ -190,5 +191,10 @@ const spec: AIServiceSpec = {
 }
 
 export default function ContentGenerationPage() {
-  return <AIServiceTemplate spec={spec} />
+  return (
+    <>
+      <AIServiceTemplate spec={spec} />
+      <IntegrationsTicker eyebrow="Publishes to the platforms you use" />
+    </>
+  )
 }

@@ -3,7 +3,7 @@ import React from "react"
 import { BuildShipTemplate, type BSServiceSpec } from "@/components/sections/services/BuildShipTemplate"
 
 export const metadata: Metadata = {
-  title: "Web Development | RevenueLadder",
+  title: "Web development Wales | Revenue Ladder",
   description: "Marketing sites built fast and built right -- Lighthouse 96+, WCAG 2.2, Welsh and English. Hand-built from Bangor.",
 }
 

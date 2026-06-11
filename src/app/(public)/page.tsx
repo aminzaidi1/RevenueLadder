@@ -8,6 +8,7 @@ import { AiVsHumanSection } from "@/components/sections/AiVsHumanSection"
 import { IndustriesSection } from "@/components/sections/IndustriesSection"
 import { BlogTeaserSection } from "@/components/sections/BlogTeaserSection"
 import { CtaSection } from "@/components/sections/CtaSection"
+import { IntegrationsTicker } from "@/components/shared/IntegrationsTicker"
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://revenueladder.co.uk"
@@ -70,6 +71,9 @@ export default function HomePage() {
       <BeforeAfterSection />
       <ServicesSection />
       <WorkflowSection />
+      <div className="container">
+        <IntegrationsTicker eyebrow="Works with your existing stack" />
+      </div>
       <AiVsHumanSection />
       <IndustriesSection />
       <BlogTeaserSection />

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { BuildShipTemplate, type BSServiceSpec } from "@/components/sections/services/BuildShipTemplate"
 
 export const metadata: Metadata = {
-  title: "SEO | RevenueLadder",
+  title: "SEO services Wales | Revenue Ladder",
   description: "Technical SEO audits, keyword maps, and on-page work that moves Welsh and UK businesses up Google. Transparent reporting, monthly retainer.",
 }
 

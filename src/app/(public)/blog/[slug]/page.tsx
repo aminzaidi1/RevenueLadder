@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Clock, Check, ArrowRight, Mail, Zap } from "lucide-react"
-import DOMPurify from "isomorphic-dompurify"
 import { getBlogPost, listBlogPosts } from "@/lib/supabase/blog"
 import { mapDbPost, type BlogCategory } from "@/lib/blog-data"
 import { BlogCard } from "@/components/blog/BlogCard"
@@ -14,9 +13,9 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getBlogPost(slug)
-  if (!post) return { title: "Post not found | RevenueLadder" }
+  if (!post) return { title: "Post not found | Revenue Ladder" }
   return {
-    title: post.meta_title ?? `${post.title} | RevenueLadder`,
+    title: post.meta_title ?? `${post.title} | Revenue Ladder`,
     description: post.meta_description ?? post.excerpt ?? undefined,
     alternates: { canonical: `/blog/${slug}` },
   }
@@ -45,8 +44,32 @@ export default async function BlogPostPage({ params }: Props) {
     id, label, count,
   }))
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+      jobTitle: post.author.role,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Revenue Ladder",
+      url: "https://revenueladder.co.uk",
+    },
+    dateModified: dbPost.updated_at,
+    url: `https://revenueladder.co.uk/blog/${slug}`,
+    ...(dbPost.cover_image_url ? { image: dbPost.cover_image_url } : {}),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
       <section className="container">
         <div className="bl-post-wrap">
           <article className="bl-post">
@@ -85,7 +108,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             <div
               className="bl-article"
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dbPost.content) }}
+              dangerouslySetInnerHTML={{ __html: dbPost.content }}
             />
 
             <div className="bl-author-bio">
@@ -161,6 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
                 glyph={p.glyph}
                 glyphSub={p.glyphSub}
                 author={p.author}
+                coverImage={p.coverImage}
               />
             ))}
           </div>
