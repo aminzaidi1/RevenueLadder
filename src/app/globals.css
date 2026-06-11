@@ -752,6 +752,24 @@
 .t1-call-foot .label .s { font-family: var(--rl-font-mono); font-size: 11px; color: rgba(255,255,255,.45); margin-top: 1px; }
 .t1-call-foot .pill { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(16,185,129,.15); color: var(--rl-success); }
 
+/* Urvo voice demo — live variant of the call panel */
+.vd-call .t1-call-head .label { font-family: var(--rl-font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.vd-script { max-height: 220px; min-height: 140px; overflow-y: auto; scroll-behavior: smooth; }
+.vd-script::-webkit-scrollbar { width: 6px; }
+.vd-script::-webkit-scrollbar-track { background: transparent; }
+.vd-script::-webkit-scrollbar-thumb { background: rgba(255,196,37,.18); border-radius: 99px; }
+.vd-foot { grid-template-columns: 44px 1fr auto; }
+.vd-action { width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(255,196,37,.30); background: rgba(255,196,37,.16); color: var(--rl-gold); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.vd-action:hover:not(:disabled) { background: var(--rl-gold); color: var(--rl-forest-ink); border-color: var(--rl-gold); box-shadow: 0 8px 20px rgba(255,196,37,.30); transform: translateY(-1px); }
+.vd-action:active:not(:disabled) { transform: translateY(0); }
+.vd-action:disabled { cursor: not-allowed; opacity: .55; }
+.vd-action.end { background: rgba(239,68,68,.18); border-color: rgba(239,68,68,.40); color: #fca5a5; }
+.vd-action.end:hover:not(:disabled) { background: var(--rl-error); border-color: var(--rl-error); color: #fff; box-shadow: 0 8px 20px rgba(239,68,68,.30); }
+.vd-spin { animation: vdSpin 1s linear infinite; }
+@keyframes vdSpin { to { transform: rotate(360deg); } }
+.vd-attrib { font-family: var(--rl-font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.45); text-decoration: none; padding: 5px 10px; border: 1px solid rgba(255,255,255,.08); border-radius: 999px; transition: color .2s ease, border-color .2s ease; }
+.vd-attrib:hover { color: var(--rl-gold); border-color: rgba(255,196,37,.30); }
+
 .t1-caps .sp-cap { background: var(--rl-surface); border-color: var(--rl-border-soft); }
 .t1-caps .sp-cap .ic { background: var(--rl-forest-ink); color: var(--rl-gold); border: 1px solid rgba(255,196,37,.20); }
 .t1-caps .sp-cap .kicker { color: var(--rl-gold-deep); }
