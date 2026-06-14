@@ -34,8 +34,8 @@ function ChatThread() {
           ))}
         </div>
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>Stripe deposit queued · 28ft day boat · Sat 14th</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>Stripe deposit queued · 28ft day boat · Sat 14th</span>
       </div>
     </div>
   )
@@ -156,12 +156,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "chat",     lbl: "WhatsApp",  x: 10, y: 28 },
-    { ic: "globe",    lbl: "Website",   x: 36, y: 8  },
-    { ic: "workflow", lbl: "HubSpot",   x: 68, y: 8  },
-    { ic: "cart",     lbl: "Stripe",    x: 88, y: 32 },
-    { ic: "chat",     lbl: "Slack",     x: 78, y: 74 },
-    { ic: "mail",     lbl: "Intercom",  x: 12, y: 74 },
+    { ic: "chat",     lbl: "Slack",    x: 14, y: 14, logoSrc: "/assets/icons/slack.png",         logoBg: "#fff" },
+    { ic: "chat",     lbl: "Telegram", x: 78, y: 14, logoSrc: "/assets/icons/telegram.svg",      logoBg: "#fff" },
+    { ic: "share",    lbl: "Meta",     x: 4,  y: 42, logoSrc: "/assets/icons/meta.svg",          logoBg: "#fff" },
+    { ic: "workflow", lbl: "HubSpot",  x: 88, y: 42, logoSrc: "/assets/icons/hubspot.png",       logoBg: "#fff" },
+    { ic: "mail",     lbl: "Gmail",    x: 14, y: 70, logoSrc: "/assets/icons/gmail-icon-3.svg",  logoBg: "#fff" },
+    { ic: "book",     lbl: "Notion",   x: 78, y: 70, logoSrc: "/assets/icons/notion.svg",        logoBg: "#fff" },
   ],
   intCats: [
     { ic: "chat",     h: "Chat channels",  sub: "Where conversations happen",   logos: [{ nm: "Website widget", color: "#1A4D2E" }, { nm: "WhatsApp", color: "#25D366" }, { nm: "Facebook", color: "#0866FF" }, { nm: "Instagram DM", color: "#E4405F" }] },

@@ -1,6 +1,7 @@
 @import "../styles/colors_and_type.css";
 @import "../styles/blog.css";
 @import "../styles/app.css";
+@import "../styles/case-study.css";
 @import "tailwindcss";
 
 @theme {

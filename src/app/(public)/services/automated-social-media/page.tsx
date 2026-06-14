@@ -35,8 +35,8 @@ function CalendarPanel() {
           </div>
         ))}
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>4.2k reach this week -- up 38% on last month</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>4.2k reach this week -- up 38% on last month</span>
       </div>
     </div>
   )
@@ -162,12 +162,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "share",    lbl: "LinkedIn",  x: 10, y: 28 },
-    { ic: "share",    lbl: "Instagram", x: 36, y: 8  },
-    { ic: "chat",     lbl: "Facebook",  x: 68, y: 8  },
-    { ic: "pencil",   lbl: "Canva",     x: 88, y: 32 },
-    { ic: "chart",    lbl: "PostHog",   x: 78, y: 74 },
-    { ic: "zap",      lbl: "Buffer",    x: 12, y: 74 },
+    { ic: "share",    lbl: "Meta",      x: 14, y: 14, logoSrc: "/assets/icons/meta.svg",             logoBg: "#fff" },
+    { ic: "zap",      lbl: "Make",      x: 78, y: 14, logoSrc: "/assets/icons/make.png",             logoBg: "#fff" },
+    { ic: "zap",      lbl: "Zapier",    x: 4,  y: 42, logoSrc: "/assets/icons/zapier.png",           logoBg: "#fff" },
+    { ic: "mail",     lbl: "Mailchimp", x: 88, y: 42, logoSrc: "/assets/icons/mailchimp-icon-3.svg", logoBg: "#FFE01B" },
+    { ic: "book",     lbl: "Notion",    x: 14, y: 70, logoSrc: "/assets/icons/notion.svg",           logoBg: "#fff" },
+    { ic: "layout",   lbl: "Airtable",  x: 78, y: 70, logoSrc: "/assets/icons/airtable.svg",         logoBg: "#fff" },
   ],
   intCats: [
     { ic: "share",    h: "Social platforms",   sub: "Where content goes live",       logos: [{ nm: "LinkedIn", color: "#0A66C2" }, { nm: "Instagram", color: "#E4405F" }, { nm: "Facebook", color: "#0866FF" }, { nm: "X (Twitter)", color: "#000000" }] },

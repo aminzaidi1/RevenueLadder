@@ -52,8 +52,8 @@ const MEGA_COL3 = {
 }
 
 const MEGA_COL4_LINKS = [
-  { label: "Aber Coffee Co. -- 4x more bookings",   href: "/case-studies/aber-coffee"    },
-  { label: "Snowdon Trails -- voice-agent rollout", href: "/case-studies/snowdon-trails" },
+  { label: "Arrow Taxi Bangor -- 0 missed calls", href: "/case-studies/arrow-taxi-bangor" },
+  { label: "All case studies",                    href: "/case-studies"                   },
 ]
 
 function MegaLink({ label, href, dark = false }: { label: string; href: string; dark?: boolean }) {
@@ -189,23 +189,14 @@ export function Nav() {
 
         {/* Desktop nav links */}
         <div style={{ gap: 2 }} className="hidden lg:flex" role="menubar">
-          {(
-            [
-              // { label: "How it works", href: "/#how-it-works" },
-              { label: "Blog",         href: "/blog" },
-              { label: "Pricing",      href: "/pricing" },
-              { label: "About",        href: "/about" },
-            ] as const
-          ).map(({ label, href }) => (
-            <Link key={label} href={href} style={navLinkStyle()}>
-              {label}
-            </Link>
-          ))}
+          <Link href="/blog" style={navLinkStyle()}>Blog</Link>
           <div onMouseEnter={openMega} onMouseLeave={closeMega}>
             <button onClick={() => setMegaOpen((o) => !o)} aria-expanded={megaOpen} style={navLinkStyle(megaOpen)}>
               Services <ChevronDown size={14} strokeWidth={2.25} />
             </button>
           </div>
+          <Link href="/pricing" style={navLinkStyle()}>Pricing</Link>
+          <Link href="/case-studies" style={navLinkStyle()}>Case studies</Link>
         </div>
 
         {/* CTAs */}
@@ -244,18 +235,9 @@ export function Nav() {
         pointerEvents: mobileOpen ? "auto" : "none",
         transition: "opacity .25s var(--rl-ease-out), transform .25s var(--rl-ease-out)",
       }} className="lg:hidden">
-        {(
-          [
-            // { label: "How it works", href: "/#how-it-works" },
-            { label: "Blog",         href: "/blog" },
-            { label: "Pricing",      href: "/pricing" },
-            { label: "About",        href: "/about" },
-          ] as const
-        ).map(({ label, href }) => (
-          <Link key={label} href={href} onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "14px 16px", borderRadius: 12, fontSize: 15, fontWeight: 600, color: "var(--rl-fg-1)", textDecoration: "none" }}>
-            {label} <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
-          </Link>
-        ))}
+        <Link href="/blog" onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "14px 16px", borderRadius: 12, fontSize: 15, fontWeight: 600, color: "var(--rl-fg-1)", textDecoration: "none" }}>
+          Blog <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
+        </Link>
 
         {/* Services accordion */}
         <div>
@@ -289,6 +271,12 @@ export function Nav() {
             </div>
           )}
         </div>
+        <Link href="/pricing" onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "14px 16px", borderRadius: 12, fontSize: 15, fontWeight: 600, color: "var(--rl-fg-1)", textDecoration: "none" }}>
+          Pricing <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
+        </Link>
+        <Link href="/case-studies" onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "14px 16px", borderRadius: 12, fontSize: 15, fontWeight: 600, color: "var(--rl-fg-1)", textDecoration: "none" }}>
+          Case studies <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
+        </Link>
         <div style={{ marginTop: 12, paddingTop: 16, borderTop: "1px solid var(--rl-border-soft)", display: "flex", flexDirection: "column", gap: 8 }}>
           <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 48, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, textDecoration: "none" }}>
             Book a call <ArrowRight size={14} />

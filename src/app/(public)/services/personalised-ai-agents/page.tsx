@@ -37,8 +37,8 @@ function AgentRoster() {
           </div>
         ))}
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>£420k operational saving projected yr-1</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>£420k operational saving projected yr-1</span>
       </div>
     </div>
   )
@@ -161,12 +161,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "mail",     lbl: "Outlook",   x: 10, y: 28 },
-    { ic: "workflow", lbl: "HubSpot",   x: 36, y: 8  },
-    { ic: "chat",     lbl: "Slack",     x: 68, y: 8  },
-    { ic: "book",     lbl: "Notion",    x: 88, y: 32 },
-    { ic: "chart",    lbl: "PostHog",   x: 78, y: 74 },
-    { ic: "mic",      lbl: "Fireflies", x: 12, y: 74 },
+    { ic: "chat",     lbl: "Slack",   x: 14, y: 14, logoSrc: "/assets/icons/slack.png",         logoBg: "#fff" },
+    { ic: "mail",     lbl: "Gmail",   x: 78, y: 14, logoSrc: "/assets/icons/gmail-icon-3.svg",  logoBg: "#fff" },
+    { ic: "book",     lbl: "Notion",  x: 4,  y: 42, logoSrc: "/assets/icons/notion.svg",        logoBg: "#fff" },
+    { ic: "globe",    lbl: "Drive",   x: 88, y: 42, logoSrc: "/assets/icons/drive.png",         logoBg: "#fff" },
+    { ic: "workflow", lbl: "HubSpot", x: 14, y: 70, logoSrc: "/assets/icons/hubspot.png",       logoBg: "#fff" },
+    { ic: "zap",      lbl: "Make",    x: 78, y: 70, logoSrc: "/assets/icons/make.png",          logoBg: "#fff" },
   ],
   intCats: [
     { ic: "mail",     h: "Email & comms",   sub: "Where your agents read + write", logos: [{ nm: "Outlook", color: "#0078D4" }, { nm: "Gmail", color: "#EA4335" }, { nm: "Slack", color: "#4A154B" }, { nm: "Teams", color: "#6264A7" }] },

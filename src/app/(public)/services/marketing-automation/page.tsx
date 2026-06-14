@@ -39,8 +39,8 @@ function PipelinePanel() {
           </div>
         ))}
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>£840k routed through this pipeline in 2024</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>£840k routed through this pipeline in 2024</span>
       </div>
     </div>
   )
@@ -165,12 +165,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "workflow", lbl: "HubSpot",   x: 10, y: 28 },
-    { ic: "mail",     lbl: "Mailchimp", x: 36, y: 8  },
-    { ic: "chat",     lbl: "WhatsApp",  x: 68, y: 8  },
-    { ic: "clock",    lbl: "Calendly",  x: 88, y: 32 },
-    { ic: "chart",    lbl: "Plausible", x: 78, y: 74 },
-    { ic: "zap",      lbl: "Zapier",    x: 12, y: 74 },
+    { ic: "workflow", lbl: "HubSpot",     x: 14, y: 14, logoSrc: "/assets/icons/hubspot.png",          logoBg: "#fff" },
+    { ic: "mail",     lbl: "Mailchimp",   x: 78, y: 14, logoSrc: "/assets/icons/mailchimp-icon-3.svg", logoBg: "#FFE01B" },
+    { ic: "share",    lbl: "Meta",        x: 4,  y: 42, logoSrc: "/assets/icons/meta.svg",             logoBg: "#fff" },
+    { ic: "users",    lbl: "Salesforce",  x: 88, y: 42, logoSrc: "/assets/icons/salesforce.png",       logoBg: "#fff" },
+    { ic: "rocket",   lbl: "GoHighLevel", x: 14, y: 70, logoSrc: "/assets/icons/gohighlevel.svg",      logoBg: "#fff" },
+    { ic: "zap",      lbl: "Zapier",      x: 78, y: 70, logoSrc: "/assets/icons/zapier.png",           logoBg: "#fff" },
   ],
   intCats: [
     { ic: "workflow", h: "CRM platforms",           sub: "Where your deals live",      logos: [{ nm: "HubSpot", color: "#FF7A59" }, { nm: "Pipedrive", color: "#017737" }, { nm: "Salesforce", color: "#00A1E0" }, { nm: "ActiveCampaign", color: "#356AE6" }] },

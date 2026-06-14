@@ -10,6 +10,8 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE}/services`,                            lastModified: d("2026-04-01"), changeFrequency: "monthly", priority: 0.8 },
   { url: `${BASE}/contact`,                             lastModified: d("2026-01-15"), changeFrequency: "yearly",  priority: 0.8 },
   { url: `${BASE}/blog`,                                lastModified: d("2026-05-22"), changeFrequency: "weekly",  priority: 0.8 },
+  { url: `${BASE}/case-studies`,                        lastModified: d("2026-06-13"), changeFrequency: "monthly", priority: 0.8 },
+  { url: `${BASE}/case-studies/arrow-taxi-bangor`,      lastModified: d("2026-06-13"), changeFrequency: "monthly", priority: 0.7 },
   { url: `${BASE}/about`,                               lastModified: d("2026-01-15"), changeFrequency: "yearly",  priority: 0.6 },
   { url: `${BASE}/services/web-development`,            lastModified: d("2026-04-01"), changeFrequency: "monthly", priority: 0.7 },
   { url: `${BASE}/services/web-app-development`,        lastModified: d("2026-04-01"), changeFrequency: "monthly", priority: 0.7 },

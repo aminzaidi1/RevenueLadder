@@ -42,8 +42,8 @@ function WriterDesk() {
           ))}
         </div>
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>Ready to publish -- Eleri approved at 09:14</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>Ready to publish -- Eleri approved at 09:14</span>
       </div>
     </div>
   )
@@ -170,12 +170,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "pencil",   lbl: "WordPress", x: 10, y: 28 },
-    { ic: "search",   lbl: "SurferSEO", x: 36, y: 8  },
-    { ic: "chart",    lbl: "GA4",       x: 68, y: 8  },
-    { ic: "workflow", lbl: "HubSpot",   x: 88, y: 32 },
-    { ic: "mail",     lbl: "Mailchimp", x: 78, y: 74 },
-    { ic: "chat",     lbl: "Slack",     x: 12, y: 74 },
+    { ic: "book",     lbl: "Notion",    x: 14, y: 14, logoSrc: "/assets/icons/notion.svg",           logoBg: "#fff" },
+    { ic: "globe",    lbl: "Drive",     x: 78, y: 14, logoSrc: "/assets/icons/drive.png",            logoBg: "#fff" },
+    { ic: "layout",   lbl: "Sheets",    x: 4,  y: 42, logoSrc: "/assets/icons/sheets.png",           logoBg: "#fff" },
+    { ic: "mail",     lbl: "Mailchimp", x: 88, y: 42, logoSrc: "/assets/icons/mailchimp-icon-3.svg", logoBg: "#FFE01B" },
+    { ic: "workflow", lbl: "HubSpot",   x: 14, y: 70, logoSrc: "/assets/icons/hubspot.png",          logoBg: "#fff" },
+    { ic: "layout",   lbl: "Airtable",  x: 78, y: 70, logoSrc: "/assets/icons/airtable.svg",         logoBg: "#fff" },
   ],
   intCats: [
     { ic: "pencil",   h: "CMS & publishing",  sub: "Where content goes live",        logos: [{ nm: "WordPress", color: "#21759B" }, { nm: "Webflow", color: "#4353FF" }, { nm: "Sanity", color: "#F03E2F" }, { nm: "Notion", color: "#000000" }] },

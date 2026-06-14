@@ -37,8 +37,8 @@ function AuditReport() {
           </div>
         ))}
       </div>
-      <div className="t1-call-foot">
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)" }}>Roadmap: 4 automations · payback in 6 weeks</span>
+      <div className="t1-call-foot" style={{ display: "flex", justifyContent: "center" }}>
+        <span style={{ fontSize: 11, color: "rgba(255,255,255,.45)", textAlign: "center", whiteSpace: "nowrap" }}>Roadmap: 4 automations · payback in 6 weeks</span>
       </div>
     </div>
   )
@@ -165,12 +165,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "workflow", lbl: "HubSpot", x: 10, y: 28 },
-    { ic: "book",     lbl: "Notion",  x: 36, y: 8  },
-    { ic: "chart",    lbl: "PostHog", x: 68, y: 8  },
-    { ic: "mail",     lbl: "Outlook", x: 88, y: 32 },
-    { ic: "zap",      lbl: "Zapier",  x: 78, y: 74 },
-    { ic: "chat",     lbl: "Slack",   x: 12, y: 74 },
+    { ic: "book",     lbl: "Notion",   x: 14, y: 14, logoSrc: "/assets/icons/notion.svg",    logoBg: "#fff" },
+    { ic: "chat",     lbl: "Slack",    x: 78, y: 14, logoSrc: "/assets/icons/slack.png",     logoBg: "#fff" },
+    { ic: "workflow", lbl: "HubSpot",  x: 4,  y: 42, logoSrc: "/assets/icons/hubspot.png",   logoBg: "#fff" },
+    { ic: "layout",   lbl: "Airtable", x: 88, y: 42, logoSrc: "/assets/icons/airtable.svg",  logoBg: "#fff" },
+    { ic: "zap",      lbl: "Make",     x: 14, y: 70, logoSrc: "/assets/icons/make.png",      logoBg: "#fff" },
+    { ic: "globe",    lbl: "Drive",    x: 78, y: 70, logoSrc: "/assets/icons/drive.png",     logoBg: "#fff" },
   ],
   intCats: [
     { ic: "workflow", h: "CRM & ops",        sub: "Where processes live",        logos: [{ nm: "HubSpot", color: "#FF7A59" }, { nm: "Pipedrive", color: "#017737" }, { nm: "Airtable", color: "#18BFFF" }, { nm: "Monday", color: "#FF3D57" }] },
