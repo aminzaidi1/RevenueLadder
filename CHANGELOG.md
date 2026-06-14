@@ -3,6 +3,21 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-06-14
+
+### Added
+- Case studies feature: public `/case-studies` index and first study at `/case-studies/arrow-taxi-bangor`, with both routes wired into `sitemap.ts`
+- Reusable case study section components under `src/components/sections/case-studies/`: `CaseStudyHero`, `CaseStudyBreadcrumb`, `CaseStudyContext`, `CaseStudyProblem`, `CaseStudyWork`, `CaseStudyResults`, `CaseStudyTestimonial`, `CaseStudyCTA`, `CaseStudyIndexCard`, and an `Eyebrow` primitive
+- Shared `CaseStudy` type definitions in `src/components/sections/case-studies/types.ts`
+- Case study content layer in `src/data/case-studies/` with an `index.ts` registry and the Arrow Taxi Bangor study (`arrow-taxi-bangor.tsx`)
+- Arrow Taxi logo asset at `public/assets/case-studies/arrow-logo.png`
+- Dedicated `src/styles/case-study.css` stylesheet for case study page layout and section spacing
+- "Case studies" entry in the public `Nav` so visitors can reach the index from any page
+
+### Changed
+- `AIServiceTemplate` updated to support linking out to a relevant case study from each service page
+- All seven `/services/*` pages (ai-consultation, automated-social-media, chatbots, content-generation, marketing-automation, personalised-ai-agents, voice-agents) updated to pass through the new case study reference props
+
 ## [Unreleased] - 2026-06-11
 
 ### Added
