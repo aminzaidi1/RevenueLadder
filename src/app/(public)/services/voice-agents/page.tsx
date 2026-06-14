@@ -117,12 +117,12 @@ const spec: AIServiceSpec = {
     },
   ],
   hubNodes: [
-    { ic: "mic",      lbl: "Twilio",    x: 10, y: 28 },
-    { ic: "clock",    lbl: "Calendly",  x: 36, y: 8  },
-    { ic: "workflow", lbl: "HubSpot",   x: 68, y: 8  },
-    { ic: "cart",     lbl: "Stripe",    x: 88, y: 32 },
-    { ic: "chat",     lbl: "Slack",     x: 78, y: 74 },
-    { ic: "mail",     lbl: "Outlook",   x: 12, y: 74 },
+    { ic: "mic",      lbl: "Twilio",   x: 14, y: 14, logoSrc: "/assets/icons/twilio.png",        logoBg: "#fff" },
+    { ic: "clock",    lbl: "Cal.com",  x: 78, y: 14, logoSrc: "/assets/icons/cal.png",           logoBg: "#fff" },
+    { ic: "cart",     lbl: "Stripe",   x: 4,  y: 42, logoSrc: "/assets/icons/stripe.svg",        logoBg: "#fff" },
+    { ic: "workflow", lbl: "HubSpot",  x: 88, y: 42, logoSrc: "/assets/icons/hubspot.png",       logoBg: "#fff" },
+    { ic: "chat",     lbl: "Slack",    x: 14, y: 70, logoSrc: "/assets/icons/slack.png",         logoBg: "#fff" },
+    { ic: "mail",     lbl: "Gmail",    x: 78, y: 70, logoSrc: "/assets/icons/gmail-icon-3.svg",  logoBg: "#fff" },
   ],
   intCats: [
     { ic: "mic",      h: "Telephony",            sub: "Where calls arrive",            logos: [{ nm: "Twilio", color: "#F22F46" }, { nm: "Vonage", color: "#000000" }, { nm: "Telnyx", color: "#00D4AA" }, { nm: "Plivo", color: "#FF5040" }] },

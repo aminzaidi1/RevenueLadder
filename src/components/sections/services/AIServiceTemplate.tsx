@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Bot, Workflow, Mic, ShoppingCart, Share2, Check, Briefcase, Mail, Clock,
   BarChart2, Shield, Pencil, BookOpen, Globe, Inbox, Play, Rocket,
@@ -52,7 +53,7 @@ export interface AIDiveRow {
   visual: ReactNode
 }
 
-export interface AIHubNode { ic: IconName; lbl: string; x: number; y: number }
+export interface AIHubNode { ic: IconName; lbl: string; x: number; y: number; logoSrc?: string; logoBg?: string }
 export interface AIIntCat  { ic: IconName; h: string; sub: string; logos: { nm: string; color: string }[] }
 
 export interface AIEngage {
@@ -80,6 +81,8 @@ export interface AIServiceSpec {
   diveRows:  AIDiveRow[]
 
   hubNodes:  AIHubNode[]
+  hubCenterLogoSrc?: string
+  hubCenterShowIcon?: boolean
   intCats:   AIIntCat[]
 
   engage: AIEngage
@@ -243,15 +246,43 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
               })}
             </svg>
             {spec.hubNodes.map((n, i) => (
-              <div className="sp-hub-node" key={i} style={{ left: `${n.x}%`, top: `${n.y}%` }}>
-                <Ic name={n.ic} size={22} strokeWidth={2} />
+              <div
+                className="sp-hub-node"
+                key={i}
+                style={{
+                  left: `${n.x}%`,
+                  top: `${n.y}%`,
+                  ...(n.logoBg ? { background: n.logoBg } : null),
+                }}
+              >
+                {n.logoSrc ? (
+                  <Image
+                    src={n.logoSrc}
+                    alt={n.lbl}
+                    width={36}
+                    height={36}
+                    style={{ width: 36, height: 36, objectFit: "contain" }}
+                  />
+                ) : (
+                  <Ic name={n.ic} size={22} strokeWidth={2} />
+                )}
                 <span className="lbl">{n.lbl}</span>
               </div>
             ))}
             <div className="sp-hub-center">
-              <Ic name={spec.ic} size={32} strokeWidth={2} />
-              <div className="nm">{spec.service}</div>
-              <div className="tg">RL AI Stack</div>
+              {spec.hubCenterLogoSrc ? (
+                <Image
+                  src={spec.hubCenterLogoSrc}
+                  alt={spec.service}
+                  width={44}
+                  height={44}
+                  style={{ width: 44, height: 44, objectFit: "contain" }}
+                />
+              ) : spec.hubCenterShowIcon === false ? null : (
+                <Ic name={spec.ic} size={32} strokeWidth={2} />
+              )}
+              <div className="nm" style={{ textAlign: "center" }}>{spec.service}</div>
+              <div className="tg">AI Stack</div>
             </div>
           </div>
           <div className="sp-cats">
