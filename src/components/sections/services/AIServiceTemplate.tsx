@@ -107,9 +107,9 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
               <h1 className="sp-h1">{spec.h1}</h1>
               <p className="sp-sub">{spec.sub}</p>
               <div className="sp-cta-row">
-                <Link href="/contact" className="btn accent lg">
+                <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" className="btn accent lg">
                   Book a call <ArrowRight size={16} />
-                </Link>
+                </a>
                 {spec.secondaryCta && (
                   <Link href="/contact" className="btn outline on-dark lg">
                     <Play size={14} /> {spec.secondaryCta}
@@ -347,9 +347,9 @@ export function AIServiceTemplate({ spec }: { spec: AIServiceSpec }) {
               {spec.engage.ctaCopy ?? `Ready to add ${spec.service.toLowerCase()} to your business?`}
               <small>Book a 30-minute call -- we&apos;ll tell you exactly what it would take.</small>
             </div>
-            <Link href="/contact" className="btn primary">
+            <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" className="btn primary">
               Book a call <ArrowRight size={14} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

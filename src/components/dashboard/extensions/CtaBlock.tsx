@@ -218,7 +218,7 @@ export const CtaBlock = Node.create({
       heading:  { default: "Ready to grow?",  parseHTML: el => el.getAttribute("data-heading")    ?? "Ready to grow?" },
       body:     { default: "",                 parseHTML: el => el.getAttribute("data-body")       ?? "" },
       btnLabel: { default: "Book a call",      parseHTML: el => el.getAttribute("data-btn-label")  ?? "Book a call" },
-      btnUrl:   { default: "/contact",         parseHTML: el => el.getAttribute("data-btn-url")    ?? "/contact" },
+      btnUrl:   { default: "https://calendly.com/revenueladder/30min", parseHTML: el => el.getAttribute("data-btn-url") ?? "https://calendly.com/revenueladder/30min" },
       variant:  { default: "forest",           parseHTML: el => el.getAttribute("data-variant")    ?? "forest" },
       bgColor:  { default: "",                 parseHTML: el => el.getAttribute("data-bg-color")   ?? "" },
     }

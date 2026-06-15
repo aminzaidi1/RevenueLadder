@@ -3,6 +3,11 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-06-15
+
+### Changed
+- All "Book a call" CTAs across the site (nav, footer, service pages, case study pages, blog sidebar, blog editor CTA block) now link directly to the Calendly booking page (`https://calendly.com/revenueladder/30min`) and open in a new tab
+
 ## [Unreleased] - 2026-06-14
 
 ### Added

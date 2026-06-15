@@ -204,9 +204,9 @@ export function Nav() {
           <Link href="/login" className="hidden lg:inline-flex" style={{ background: "transparent", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, color: "var(--rl-fg-2)", alignItems: "center", textDecoration: "none" }}>
             Sign in
           </Link>
-          <Link href="/contact" className="hidden lg:inline-flex" style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(26,77,46,.28)", textDecoration: "none" }}>
+          <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" className="hidden lg:inline-flex" style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 13, height: 36, padding: "0 14px", borderRadius: 10, alignItems: "center", gap: 6, boxShadow: "0 2px 8px rgba(26,77,46,.28)", textDecoration: "none" }}>
             Book a call <ArrowRight size={14} />
-          </Link>
+          </a>
           <button
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -278,9 +278,9 @@ export function Nav() {
           Case studies <ArrowRight size={14} style={{ color: "var(--rl-fg-3)" }} />
         </Link>
         <div style={{ marginTop: 12, paddingTop: 16, borderTop: "1px solid var(--rl-border-soft)", display: "flex", flexDirection: "column", gap: 8 }}>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 48, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, textDecoration: "none" }}>
+          <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} style={{ background: "var(--rl-forest)", color: "#fff", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 48, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, textDecoration: "none" }}>
             Book a call <ArrowRight size={14} />
-          </Link>
+          </a>
           <Link href="/login" onClick={() => setMobileOpen(false)} style={{ background: "transparent", border: "2px solid rgba(26,77,46,.28)", color: "var(--rl-forest)", fontFamily: "var(--rl-font-body)", fontWeight: 600, fontSize: 14, height: 42, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Sign in</Link>
         </div>
       </div>

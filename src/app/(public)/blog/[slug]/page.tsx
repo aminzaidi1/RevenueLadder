@@ -177,9 +177,9 @@ export default async function BlogPostPage({ params }: Props) {
                 30-minute call with the team in Bangor. We will walk your stack and send a written
                 plan within 48 hours.
               </p>
-              <Link href="/contact" className="btn accent">
+              <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" className="btn accent">
                 Book a 30-min call <ArrowRight size={14} />
-              </Link>
+              </a>
             </div>
 
             <div className="bl-side-block">
