@@ -63,19 +63,23 @@ export function CaseStudyCTA({ eyebrow, title, body, primary, secondary }: CaseS
             display: "flex", gap: 12, justifyContent: "center",
             flexWrap: "wrap", marginTop: 32,
           }}>
-            <Link href={primary.href} style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              height: 52, padding: "0 24px",
-              fontFamily: "var(--rl-font-body)",
-              fontWeight: 700, fontSize: 15,
-              borderRadius: 14,
-              background: "var(--rl-gold)",
-              color: "var(--rl-forest)",
-              textDecoration: "none",
-              boxShadow: "var(--rl-shadow-gold)",
-            }}>
+            <a
+              href={primary.href}
+              {...(primary.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                height: 52, padding: "0 24px",
+                fontFamily: "var(--rl-font-body)",
+                fontWeight: 700, fontSize: 15,
+                borderRadius: 14,
+                background: "var(--rl-gold)",
+                color: "var(--rl-forest)",
+                textDecoration: "none",
+                boxShadow: "var(--rl-shadow-gold)",
+              }}
+            >
               {primary.label} <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+            </a>
             {secondary && (
               <Link href={secondary.href} style={{
                 display: "inline-flex", alignItems: "center", gap: 8,

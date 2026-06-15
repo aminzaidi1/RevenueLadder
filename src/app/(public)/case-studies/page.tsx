@@ -50,7 +50,7 @@ export default function CaseStudiesIndexPage() {
         eyebrow="Ready when you are"
         title={<>Ready to be the <em style={{ color: "var(--rl-gold)", fontStyle: "italic" }}>next case study?</em></>}
         body="Book a free 30-minute strategy call. Written plan within 48 hours. No obligation."
-        primary={{ label: "Book a call", href: "/contact" }}
+        primary={{ label: "Book a call", href: "https://calendly.com/revenueladder/30min" }}
         secondary={{ label: "See all services", href: "/services" }}
       />
     </>

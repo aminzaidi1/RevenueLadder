@@ -328,9 +328,9 @@ export function BuildShipTemplate({ spec }: { spec: BSServiceSpec }) {
               {spec.engageCta.title}
               <small>{spec.engageCta.sub}</small>
             </div>
-            <Link href="/contact" className="btn primary">
+            <a href="https://calendly.com/revenueladder/30min" target="_blank" rel="noopener noreferrer" className="btn primary">
               Book a call <ArrowRight size={14} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

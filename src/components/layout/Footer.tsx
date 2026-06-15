@@ -4,13 +4,13 @@ import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 
-const COLS: { title: string; links: { label: string; href: string }[] }[] = [
+const COLS: { title: string; links: { label: string; href: string; external?: boolean }[] }[] = [
   {
     title: "Product",
     links: [
       { label: "Pricing",       href: "/pricing"      },
       { label: "Case studies",  href: "/case-studies" },
-      { label: "Book a call",   href: "/contact"      },
+      { label: "Book a call",   href: "https://calendly.com/revenueladder/30min", external: true },
     ],
   },
   {
@@ -142,11 +142,17 @@ export function Footer() {
                 {title}
               </h4>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                {links.map(({ label, href }) => (
+                {links.map(({ label, href, external }) => (
                   <li key={label}>
-                    <Link href={href} className="footer-link" style={{ fontSize: "13.5px", textDecoration: "none", display: "block" }}>
-                      {label}
-                    </Link>
+                    {external ? (
+                      <a href={href} target="_blank" rel="noopener noreferrer" className="footer-link" style={{ fontSize: "13.5px", textDecoration: "none", display: "block" }}>
+                        {label}
+                      </a>
+                    ) : (
+                      <Link href={href} className="footer-link" style={{ fontSize: "13.5px", textDecoration: "none", display: "block" }}>
+                        {label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
