@@ -3,6 +3,15 @@
 All notable changes to this project will be documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-06-19
+
+### Added
+- Terms of Service page at `/terms-of-service` with sidebar table of contents, full legal content (services, payment, IP, acceptable use, liability, termination, governing law), and a CTA section
+- Privacy Policy page at `/privacy-policy` with sidebar table of contents, UK GDPR-compliant content (data collection, legal basis, third-party services, retention, individual rights, cookies), and a CTA section
+
+### Changed
+- Footer Company column now links to `/privacy-policy` and `/terms-of-service` as separate entries, replacing the placeholder `/privacy-terms` link
+
 ## [Unreleased] - 2026-06-15
 
 ### Changed
