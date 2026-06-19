@@ -122,7 +122,7 @@ export default function TermsOfServicePage() {
           }}>
 
             <p style={p}>
-              RevenueLadder Ltd, company number 14528221, registered in Wales ("RevenueLadder", "we", "us", "our"). Our studio is at Studio 4, The Foundry, Bangor, Gwynedd LL57. These terms apply alongside any written proposal or scope of work agreed between us.
+              RevenueLadder Ltd, company number 14528221, registered in Wales (&ldquo;RevenueLadder&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;). Our studio is at Studio 4, The Foundry, Bangor, Gwynedd LL57. These terms apply alongside any written proposal or scope of work agreed between us.
             </p>
 
             <h2 id="services" style={h2}>Services</h2>
@@ -169,19 +169,19 @@ export default function TermsOfServicePage() {
               Third-party software, frameworks, themes, plugins, and stock assets used in your project remain subject to their own licences. You are responsible for ensuring ongoing compliance with those licences after handover.
             </p>
             <p style={p}>
-              Our proprietary automation systems, workflow templates, and internal tooling remain RevenueLadder's intellectual property regardless of payment, unless explicitly licensed to you in a separate written agreement.
+              Our proprietary automation systems, workflow templates, and internal tooling remain RevenueLadder&apos;s intellectual property regardless of payment, unless explicitly licensed to you in a separate written agreement.
             </p>
 
             <h2 id="acceptable-use" style={h2}>Acceptable use</h2>
             <p style={p}>
-              You agree not to use RevenueLadder's deliverables or services to:
+              You agree not to use RevenueLadder&apos;s deliverables or services to:
             </p>
             <ul style={ul}>
               <li style={{ listStyleType: "disc" }}>Engage in unlawful, deceptive, fraudulent, or harmful activity</li>
               <li style={{ listStyleType: "disc" }}>Publish content that is defamatory, harassing, hateful, or that infringes the intellectual property rights of any third party</li>
               <li style={{ listStyleType: "disc" }}>Send unsolicited commercial messages in breach of applicable law, including the Privacy and Electronic Communications Regulations</li>
               <li style={{ listStyleType: "disc" }}>Distribute malware or engage in activity that could compromise the security of third-party systems</li>
-              <li style={{ listStyleType: "disc" }}>Resell or sublicence RevenueLadder's proprietary methods, templates, or systems without our written permission</li>
+              <li style={{ listStyleType: "disc" }}>Resell or sublicence RevenueLadder&apos;s proprietary methods, templates, or systems without our written permission</li>
             </ul>
             <p style={p}>
               We reserve the right to refuse or terminate services if we reasonably believe they are being used for any prohibited purpose.
@@ -189,7 +189,7 @@ export default function TermsOfServicePage() {
 
             <h2 id="liability" style={h2}>Limitation of liability</h2>
             <p style={p}>
-              RevenueLadder's total liability to you in connection with any engagement is limited to the total fees you have paid for that engagement in the 12 months preceding the claim.
+              RevenueLadder&apos;s total liability to you in connection with any engagement is limited to the total fees you have paid for that engagement in the 12 months preceding the claim.
             </p>
             <p style={p}>
               We are not liable for indirect, consequential, or special losses, including lost profits, lost data, loss of business opportunity, or reputational damage, even where we have been advised of the possibility of such losses.
@@ -203,10 +203,10 @@ export default function TermsOfServicePage() {
 
             <h2 id="termination" style={h2}>Termination</h2>
             <p style={p}>
-              Either party may terminate a project with 14 days' written notice. If you terminate a project in progress, you are liable for all work completed up to the date of termination. Deposits are non-refundable once work has commenced.
+              Either party may terminate a project with 14 days&apos; written notice. If you terminate a project in progress, you are liable for all work completed up to the date of termination. Deposits are non-refundable once work has commenced.
             </p>
             <p style={p}>
-              Retainer agreements may be cancelled with 30 days' written notice, taking effect at the end of the current monthly billing period.
+              Retainer agreements may be cancelled with 30 days&apos; written notice, taking effect at the end of the current monthly billing period.
             </p>
             <p style={p}>
               RevenueLadder may terminate immediately without notice if you materially breach these terms, fail to pay within 30 days of a due date, or if continuing the engagement would require us to act unlawfully.
@@ -222,7 +222,7 @@ export default function TermsOfServicePage() {
 
             <h2 id="changes" style={h2}>Changes to these terms</h2>
             <p style={p}>
-              We may update these terms from time to time. When we do, we will update the "Last updated" date above. For active clients, material changes will be communicated by email with at least 14 days' notice. Continued use of our services after the effective date constitutes acceptance of the revised terms.
+              We may update these terms from time to time. When we do, we will update the &ldquo;Last updated&rdquo; date above. For active clients, material changes will be communicated by email with at least 14 days&apos; notice. Continued use of our services after the effective date constitutes acceptance of the revised terms.
             </p>
 
             <h2 id="contact" style={h2}>Contact</h2>

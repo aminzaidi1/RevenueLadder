@@ -314,7 +314,7 @@ export default function PrivacyPolicyPage() {
 
             <h2 id="changes" style={h2}>Changes to this policy</h2>
             <p style={p}>
-              We may update this policy from time to time. The "Last updated" date at the top of this page reflects the most recent revision. Where changes are material, we will notify active clients by email.
+              We may update this policy from time to time. The &ldquo;Last updated&rdquo; date at the top of this page reflects the most recent revision. Where changes are material, we will notify active clients by email.
             </p>
 
             <h2 id="contact" style={h2}>Contact</h2>
