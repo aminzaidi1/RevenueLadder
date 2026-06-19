@@ -38,10 +38,11 @@ const COLS: { title: string; links: { label: string; href: string; external?: bo
   {
     title: "Company",
     links: [
-      { label: "About us",        href: "/about"         },
-      { label: "Blog",            href: "/blog"          },
-      { label: "Contact",         href: "/contact"       },
-      { label: "Privacy & terms", href: "/privacy-terms" },
+      { label: "About us",       href: "/about"           },
+      { label: "Blog",           href: "/blog"            },
+      { label: "Contact",        href: "/contact"         },
+      { label: "Privacy policy", href: "/privacy-policy"  },
+      { label: "Terms of service", href: "/terms-of-service" },
     ],
   },
 ]
