@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Montserrat, Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import Script from "next/script"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -86,6 +87,11 @@ export default function RootLayout({
           {children}
         </div>
         <Analytics />
+        <Script
+          src="https://voice.revenueladder.co.uk/widget.js"
+          data-agent-id="b0801e60-da36-4510-8589-0e510f418aff"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
